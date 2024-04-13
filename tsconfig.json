@@ -1,16 +1,28 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "target": "ES5",
+    "module": "commonjs",
+    "declaration": true,
     "strict": true,
-    "lib": [
-      "ESNext"
-    ],
+    "lib": ["es2015"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "types": [
       "@cloudflare/workers-types"
     ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+
+    "baseUrl": ".",
+    "outDir": "dist",
+    "paths": {
+      "@src/*": ["src/*"]
+    },
   },
+
+  "include": ["src"],
+  "exclude": ["node_modules/**/*", ".wrangler/**/*", "dist"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
 }
