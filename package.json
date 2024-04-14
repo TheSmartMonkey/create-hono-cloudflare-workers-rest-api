@@ -1,13 +1,24 @@
 {
   "scripts": {
-    "dev": "wrangler dev src/server.ts",
+    "fix": "npm run lint && npm run format",
+    "lint": "eslint src --ext .ts --fix",
+    "lint:check": "eslint src --ext .ts",
+    "format": "npx prettier --write .",
+    "format:check": "npx prettier --check .",
+    "start": "wrangler dev src/server.ts",
+    "dev": "npm run start",
     "deploy": "wrangler deploy --minify src/server.ts",
-    "undeploy": "wrangler delete src/server.ts"
+    "undeploy": "wrangler delete src/server.ts",
+    "test": "npm run unit && npm run integration",
+    "unit": "cross-env-shell NO_LOGS=true jest --group=unit",
+    "integration": "cross-env-shell NO_LOGS=true jest --group=integration --maxWorkers=1"
   },
   "dependencies": {
-    "hono": "^4.2.3"
+    "hono": "^4.2.3",
+    "pino": "^8.20.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240403.0",
     "@jest/globals": "^29.3.1",
     "@types/aws-lambda": "^8.10.106",
     "@types/dotenv": "^8.2.0",
@@ -17,8 +28,7 @@
     "@types/node": "^18.7.20",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
-    "@cloudflare/workers-types": "^4.20240403.0",
-    "wrangler": "^3.47.0",
+    "cross-env": "^7.0.3",
     "esbuild": "^0.15.18",
     "esbuild-jest": "^0.5.0",
     "eslint": "^8.24.0",
@@ -32,6 +42,7 @@
     "ts-node": "^10.9.1",
     "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.1.1",
-    "typescript": "^4.8.3"
+    "typescript": "^4.8.3",
+    "wrangler": "^3.47.0"
   }
 }

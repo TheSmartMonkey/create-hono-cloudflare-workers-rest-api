@@ -1,5 +1,5 @@
+import { getMessage } from '@src/service';
 import { Hono } from 'hono';
-import { getMessage } from './service';
 
 const app = new Hono();
 

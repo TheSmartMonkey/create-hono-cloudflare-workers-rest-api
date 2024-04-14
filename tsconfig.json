@@ -9,15 +9,13 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "types": [
-      "@cloudflare/workers-types"
-    ],
+    "types": ["@cloudflare/workers-types"],
 
     "baseUrl": ".",
     "outDir": "dist",
     "paths": {
       "@src/*": ["src/*"]
-    },
+    }
   },
 
   "include": ["src"],
