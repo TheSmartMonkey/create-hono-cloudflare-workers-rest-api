@@ -1,10 +1,9 @@
-import { getMessage } from '@src/service';
 import { Hono } from 'hono';
+import todo from './api/todo/todo.routes';
 
 const app = new Hono();
 
-app.get('/', (c) => {
-  return c.json({ message: getMessage() });
-});
+// Routes
+app.route('/todo', todo);
 
 export default app;

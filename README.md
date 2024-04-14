@@ -1,3 +1,3 @@
 # create-hono-cloudflare-workers-rest-api
 
-Hono rest api on cloudflare workers with validation, dependency injection, auth, testing and middlewares on steroids
+Best Honojs rest api template for side project of micro Saas with minimal setup like validation, auth, testing and middlewares on steroids
