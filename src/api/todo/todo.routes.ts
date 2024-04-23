@@ -2,12 +2,13 @@ import { Hono } from 'hono';
 
 const todo = new Hono();
 
-todo.get('/', (c) => c.text('List Books')); // GET /book
-todo.get('/:id', (c) => {
-  // GET /book/:id
-  const id = c.req.param('id');
-  return c.text('Get Book: ' + id);
+todo.get('/', (c) => c.text('List Todos'));
+todo.get('/todoId/:todoId', (c) => {
+  const todoId = c.req.param('todoId');
+  return c.text('Get Todo: ' + todoId);
 });
-todo.post('/', (c) => c.text('Create Book')); // POST /book
+todo.post('/', (c) => c.text('Create Todo'));
+todo.delete('/todoId/:todoId', (c) => c.text('Delete Todo'));
+todo.put('/todoId/:todoId', (c) => c.text('Update Todo'));
 
 export default todo;
