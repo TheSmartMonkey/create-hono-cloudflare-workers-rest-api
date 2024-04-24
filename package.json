@@ -3,6 +3,7 @@
     "fix": "npm run lint && npm run format",
     "lint": "eslint src --ext .ts --fix",
     "lint:check": "eslint src --ext .ts",
+    "type:check": "tsc",
     "format": "npx prettier --write .",
     "format:check": "npx prettier --check .",
     "start": "wrangler dev --live-reload src/server.ts",
