@@ -2,17 +2,23 @@ import { controller } from '@src/middlewares/controller.middleware';
 import { dtoValidator } from '@src/middlewares/dto-validator.middleware';
 import { Hono } from 'hono';
 import { createTodoDto } from './dtos/create-todo.dto';
-import { createTodo } from './todo.contoller';
+import { deleteTodoDto } from './dtos/delete-todo.dto';
+import { getTodoByIdDto } from './dtos/get-todo-by-id.dto';
+import { updateTodoDto } from './dtos/update-todo.dto';
+import {
+  createTodoController,
+  deleteTodoController,
+  getAllTodosController,
+  getTodoByIdController,
+  updateTodoController,
+} from './todo.contoller';
 
 const todo = new Hono();
 
-todo.get('/', (c) => c.text('List Todos'));
-todo.get('/todoId/:todoId', (c) => {
-  const todoId = c.req.param('todoId');
-  return c.text('Get Todo: ' + todoId);
-});
-todo.post('/', dtoValidator(createTodoDto), controller(createTodo));
-todo.delete('/todoId/:todoId', (c) => c.text('Delete Todo'));
-todo.put('/todoId/:todoId', (c) => c.text('Update Todo'));
+todo.get('/', controller(getAllTodosController));
+todo.get('/todoId/:todoId', dtoValidator(getTodoByIdDto), controller(getTodoByIdController));
+todo.post('/', dtoValidator(createTodoDto), controller(createTodoController));
+todo.delete('/todoId/:todoId', dtoValidator(deleteTodoDto), controller(deleteTodoController));
+todo.put('/todoId/:todoId', dtoValidator(updateTodoDto), controller(updateTodoController));
 
 export default todo;
