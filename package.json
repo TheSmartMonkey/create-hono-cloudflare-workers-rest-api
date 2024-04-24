@@ -15,8 +15,10 @@
     "integration": "cross-env-shell NO_LOGS=true jest --group=integration --maxWorkers=1"
   },
   "dependencies": {
+    "@hono/zod-validator": "^0.2.1",
     "hono": "^4.2.3",
-    "pino": "^8.20.0"
+    "pino": "^8.20.0",
+    "zod": "^3.23.4"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240403.0",

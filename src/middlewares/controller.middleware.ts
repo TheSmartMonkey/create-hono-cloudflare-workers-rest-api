@@ -3,7 +3,9 @@ import { HttpError, HttpResponse } from '@src/models/global/http.model';
 import { Context, TypedResponse } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 
-export function controller<T>(callback: ({ body, params, queryParams }: { body: any; params: any; queryParams: any }) => Promise<T>) {
+export function controller<T>(
+  callback: ({ body, params, queryParams }: { body: any; params: any; queryParams: any }) => Promise<T>,
+): (c: Context) => Promise<Response & TypedResponse> {
   return async (c: Context): Promise<Response & TypedResponse> => {
     try {
       const body = await c.req.parseBody();
