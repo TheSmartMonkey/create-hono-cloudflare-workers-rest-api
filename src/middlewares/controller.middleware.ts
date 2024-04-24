@@ -5,6 +5,7 @@ import { HTTPException } from 'hono/http-exception';
 
 export function controller<T>(
   callback: ({ body, params, queryParams }: { body: any; params: any; queryParams: any }) => Promise<T>,
+  logResponse = true,
 ): (c: Context) => Promise<Response & TypedResponse> {
   return async (c: Context): Promise<Response & TypedResponse> => {
     try {
@@ -17,7 +18,9 @@ export function controller<T>(
         message: camelToUppercaseSnakeCase(callback.name),
         data,
       };
-      logger.info(response);
+      if (logResponse) {
+        logger.info(response);
+      }
       return c.json(response);
     } catch (error) {
       if (error instanceof HttpError) {

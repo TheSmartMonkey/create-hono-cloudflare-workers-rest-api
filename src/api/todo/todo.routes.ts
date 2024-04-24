@@ -12,7 +12,6 @@ todo.get('/todoId/:todoId', (c) => {
   return c.text('Get Todo: ' + todoId);
 });
 todo.post('/', dtoValidator(createTodoDto), controller(createTodo));
-// todo.post('/', zValidator('form', createTodoDto.body), controller(createTodo));
 todo.delete('/todoId/:todoId', (c) => c.text('Delete Todo'));
 todo.put('/todoId/:todoId', (c) => c.text('Update Todo'));
 
