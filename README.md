@@ -58,4 +58,4 @@ If you want more infos
 bun run
 ```
 
-Happy coding ! 
+Happy coding ! 🎉
