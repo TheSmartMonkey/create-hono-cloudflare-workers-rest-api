@@ -2,4 +2,4 @@ name = "create-hono-cloudflare-workers-rest-api"
 compatibility_date = "2023-12-01"
 
 [vars]
-JWT = "1234"
+JWT_SECRET = "1234"

@@ -14,7 +14,6 @@ export function controller<T>(
       const queryParams = c.req.query();
       const data: T = await callback({ body, params, queryParams });
       const response: HttpResponse<T> = {
-        status: 200,
         message: camelToUppercaseSnakeCase(callback.name),
         data,
       };

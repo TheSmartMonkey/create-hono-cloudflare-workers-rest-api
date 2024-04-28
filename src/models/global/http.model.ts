@@ -10,14 +10,7 @@ export class HttpError {
   }
 }
 
-export type HttpErrorResponse = {
-  status: HttpStatusCode;
-  message: Uppercase<string>;
-  error: any;
-};
-
 export type HttpResponse<TDATA> = {
-  status: HttpStatusCode;
   message: Uppercase<string>;
   data: TDATA;
 };
