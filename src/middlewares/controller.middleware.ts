@@ -1,10 +1,11 @@
 import { logger } from '@src/helpers/logger';
 import { HttpError, HttpResponse } from '@src/models/global/http.model';
+import { User } from '@src/models/user.model';
 import { Context, TypedResponse } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 
 export function controller<T>(
-  callback: ({ body, params, queryParams }: { body: any; params: any; queryParams: any }) => Promise<T>,
+  callback: ({ body, params, queryParams, user }: { body: any; params: any; queryParams: any; user: User }) => Promise<T>,
   logResponse = true,
 ): (c: Context) => Promise<Response & TypedResponse> {
   return async (c: Context): Promise<Response & TypedResponse> => {
@@ -12,7 +13,8 @@ export function controller<T>(
       const body = await c.req.parseBody();
       const params = c.req.param();
       const queryParams = c.req.query();
-      const data: T = await callback({ body, params, queryParams });
+      const user = c.get('user');
+      const data: T = await callback({ body, params, queryParams, user });
       const response: HttpResponse<T> = {
         message: camelToUppercaseSnakeCase(callback.name),
         data,

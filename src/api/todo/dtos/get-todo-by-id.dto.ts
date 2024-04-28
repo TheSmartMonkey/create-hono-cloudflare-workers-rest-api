@@ -1,3 +1,4 @@
+import { User } from '@src/models/user.model';
 import { z } from 'zod';
 
 export const getTodoByIdDto = {
@@ -12,4 +13,5 @@ export type GetTodoById = {
   body: z.infer<typeof getTodoByIdDto.body>;
   params: z.infer<typeof getTodoByIdDto.params>;
   queryParams: z.infer<typeof getTodoByIdDto.queryParams>;
+  user: User;
 };

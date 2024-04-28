@@ -1,3 +1,7 @@
+export function getAllUserTodos(userId: string): string {
+  return 'List Todos: ' + userId;
+}
+
 export function getAllTodos(): string {
   return 'List Todos';
 }

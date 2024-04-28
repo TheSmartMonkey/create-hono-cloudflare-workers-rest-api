@@ -1,3 +1,4 @@
+import { User } from '@src/models/user.model';
 import { z } from 'zod';
 
 export const deleteTodoDto = {
@@ -12,4 +13,5 @@ export type DeleteTodo = {
   body: z.infer<typeof deleteTodoDto.body>;
   params: z.infer<typeof deleteTodoDto.params>;
   queryParams: z.infer<typeof deleteTodoDto.queryParams>;
+  user: User;
 };

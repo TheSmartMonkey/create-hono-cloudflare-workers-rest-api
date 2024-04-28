@@ -58,4 +58,6 @@ If you want more infos
 bun run
 ```
 
+if you want to encode a jwt token : https://10015.io/tools/jwt-encoder-decoder
+
 Happy coding ! 🎉
