@@ -6,7 +6,7 @@
     "type:check": "tsc",
     "format": "npx prettier --write .",
     "format:check": "npx prettier --check .",
-    "start": "wrangler dev --live-reload src/server.ts",
+    "start": "wrangler dev --env local --live-reload src/server.ts",
     "dev": "npm run start",
     "deploy": "wrangler deploy --minify src/server.ts",
     "undeploy": "wrangler delete src/server.ts",

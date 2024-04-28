@@ -1,7 +1,10 @@
+# Cloudflare
+.wrangler
+wrangler.toml
+.dev.vars
+
+# Node
 node_modules
 dist
-.wrangler
-.dev.vars
 bun.lockb
 package-lock.json
-.env

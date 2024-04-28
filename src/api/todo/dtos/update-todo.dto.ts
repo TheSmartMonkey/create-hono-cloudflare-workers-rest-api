@@ -1,3 +1,4 @@
+import { EnvVariables } from '@src/helpers/env';
 import { User } from '@src/models/user.model';
 import { z } from 'zod';
 
@@ -14,4 +15,5 @@ export type UpdateTodo = {
   params: z.infer<typeof updateTodoDto.params>;
   queryParams: z.infer<typeof updateTodoDto.queryParams>;
   user: User;
+  env: EnvVariables;
 };

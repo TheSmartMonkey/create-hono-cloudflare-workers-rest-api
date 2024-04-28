@@ -1,10 +1,8 @@
 # create-hono-cloudflare-workers-rest-api
 
-🚀 Welcome to HonoJS REST API Template 🚀
+🚀 Welcome to [HonoJS](https://hono.dev/) REST API Template 🚀
 
-Are you ready to turbocharge your micro SaaS side projects
-
-## Why choose this template ?
+## What is in this template ?
 
 🛠️ Minimal Setup, Maximum Power
 
@@ -19,6 +17,8 @@ Are you ready to turbocharge your micro SaaS side projects
 🦋 Beautiful code with [eslint](https://eslint.org/) and [prettier](https://prettier.io/)
 
 ## Getting started
+
+Create a `wrangler.toml` based on `wrangler.default.toml`
 
 Install dependancies
 

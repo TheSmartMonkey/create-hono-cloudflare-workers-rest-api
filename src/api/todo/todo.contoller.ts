@@ -1,3 +1,4 @@
+import { EnvVariables } from '@src/helpers/env';
 import { logger } from '@src/helpers/logger';
 import { HttpError } from '@src/models/global/http.model';
 import { User } from '@src/models/user.model';
@@ -17,7 +18,8 @@ export async function createTodoController({ body }: CreateTodo): Promise<Create
   return body;
 }
 
-export async function getAllTodosController(): Promise<string> {
+export async function getAllTodosController({ env }: { env: EnvVariables }): Promise<string> {
+  logger.info({ env });
   return getAllTodos();
 }
 
