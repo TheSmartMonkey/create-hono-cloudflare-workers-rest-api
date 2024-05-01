@@ -1,15 +1,19 @@
+import { swaggerUI } from '@hono/swagger-ui';
 import { Hono } from 'hono';
 import todoPublic from './api/todo/todo-public.routes';
 import todo from './api/todo/todo.routes';
 import { EnvVariables } from './helpers/env';
 import { errorHandler } from './middlewares/error-handler.middleware';
 import { jwtMiddleware } from './middlewares/jwt.middleware';
+import swagger from './swagger';
 
 const app = new Hono<{ Bindings: EnvVariables }>();
 
 // Middlewares
 app.onError(errorHandler);
 app.use('*', jwtMiddleware);
+app.get('/public/ui', swaggerUI({ url: '/public/doc' }));
+app.route('/', swagger);
 
 // Public routes
 app.route('/public/todo', todoPublic);
