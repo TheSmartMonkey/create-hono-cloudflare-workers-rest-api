@@ -8,8 +8,8 @@
     "format:check": "npx prettier --check .",
     "start": "wrangler dev --env local --live-reload src/server.ts",
     "dev": "npm run start",
-    "deploy": "wrangler deploy --minify src/server.ts",
-    "undeploy": "wrangler delete src/server.ts",
+    "deploy": "wrangler deploy --env dev src/server.ts",
+    "undeploy": "wrangler delete --env dev src/server.ts",
     "test": "npm run unit && npm run integration",
     "unit": "cross-env-shell NO_LOGS=true jest --group=unit",
     "integration": "cross-env-shell NO_LOGS=true jest --group=integration --maxWorkers=1"
@@ -41,7 +41,6 @@
     "prettier": "^3.2.5",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
-    "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.1.1",
     "typescript": "^4.8.3",
     "wrangler": "^3.47.0"

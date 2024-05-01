@@ -1,19 +1,19 @@
-export function getAllUserTodos(userId: string): string {
+export async function getAllUserTodos(userId: string): Promise<string> {
   return 'List Todos: ' + userId;
 }
 
-export function getAllTodos(): string {
+export async function getAllTodos(): Promise<string> {
   return 'List Todos';
 }
 
-export function getTodoById(todoId: string): string {
+export async function getTodoById(todoId: string): Promise<string> {
   return 'Get Todo: ' + todoId;
 }
 
-export function deleteTodo(todoId: string): string {
+export async function deleteTodo(todoId: string): Promise<string> {
   return 'Delete Todo: ' + todoId;
 }
 
-export function updateTodo(todoId: string): string {
+export async function updateTodo(todoId: string): Promise<string> {
   return 'Update Todos: ' + todoId;
 }
