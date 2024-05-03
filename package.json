@@ -15,8 +15,6 @@
     "integration": "cross-env-shell NO_LOGS=true jest --group=integration --maxWorkers=1"
   },
   "dependencies": {
-    "@hono/swagger-ui": "^0.2.2",
-    "@hono/zod-openapi": "^0.11.0",
     "hono": "^4.2.3",
     "pino": "^8.20.0",
     "zod": "^3.23.4"
