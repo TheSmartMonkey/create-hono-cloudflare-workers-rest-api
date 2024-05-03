@@ -18,6 +18,10 @@
 
 ## Getting started
 
+```sh
+npx degit https://github.com/TheSmartMonkey/create-hono-cloudflare-workers-rest-api backend
+```
+
 Create a `wrangler.toml` based on `wrangler.default.toml`
 
 Install dependancies
