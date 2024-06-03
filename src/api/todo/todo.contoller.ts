@@ -3,12 +3,12 @@ import { logger } from '@src/helpers/logger';
 import { HttpError } from '@src/models/global/http.model';
 import { User } from '@src/models/user.model';
 import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from '@src/services/todo.service';
-import { CreateTodo } from './dtos/create-todo.dto';
-import { DeleteTodo } from './dtos/delete-todo.dto';
+import { CreateTodoDto } from './dtos/create-todo.dto';
+import { DeleteTodoDto } from './dtos/delete-todo.dto';
 import { GetTodoById } from './dtos/get-todo-by-id.dto';
 import { UpdateTodo } from './dtos/update-todo.dto';
 
-export async function createTodoController({ body }: CreateTodo): Promise<CreateTodo['body']> {
+export async function createTodoController({ body }: CreateTodoDto): Promise<CreateTodoDto['body']> {
   // Just to test error middleware
   logger.info({ body });
   if (Object.keys(body).length === 0) {
@@ -32,7 +32,7 @@ export async function getTodoByIdController({ params, user }: GetTodoById): Prom
   return getTodoById(params.todoId);
 }
 
-export async function deleteTodoController({ params }: DeleteTodo): Promise<string> {
+export async function deleteTodoController({ params }: DeleteTodoDto): Promise<string> {
   return deleteTodo(params.todoId);
 }
 
