@@ -3,6 +3,7 @@ import { logger } from '@src/helpers/logger';
 import { HttpError } from '@src/models/global/http.model';
 import { User } from '@src/models/user.model';
 import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from '@src/services/todo.service';
+import { sign } from 'hono/jwt';
 import { CreateTodoDto } from './dtos/create-todo.dto';
 import { DeleteTodoDto } from './dtos/delete-todo.dto';
 import { GetTodoById } from './dtos/get-todo-by-id.dto';
@@ -20,6 +21,8 @@ export async function createTodoController({ body }: CreateTodoDto): Promise<Cre
 
 export async function getAllTodosController({ env }: { env: EnvVariables }): Promise<string> {
   logger.info({ env });
+  const token = await sign({}, '1234');
+  logger.info(token);
   return getAllTodos();
 }
 

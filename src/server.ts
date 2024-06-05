@@ -1,5 +1,5 @@
-import { swaggerUI } from '@hono/swagger-ui';
 import { OpenAPIHono } from '@hono/zod-openapi';
+import { apiReference } from '@scalar/hono-api-reference';
 import todoPublic from './api/todo/todo-public.routes';
 import todo from './api/todo/todo.routes';
 import { EnvVariables } from './helpers/env';
@@ -14,15 +14,23 @@ app.onError(errorHandler);
 app.use('*', jwtMiddleware);
 
 // Swagger
-app.get('/public/api', swaggerUI({ url: '/public/api-json' }));
-app.doc('/public/api-json', {
-  info: {
-    title: 'An API',
-    version: 'v1',
-  },
-  openapi: '3.1.0',
-  bearerFormat: 'JWT',
-});
+app.doc('/public/api-json', {});
+app.get(
+  '/public/api',
+  apiReference({
+    pageTitle: 'Create Hono Cloudflare Workers REST API',
+    hideDownloadButton: true,
+    authentication: {
+      http: {
+        basic: { username: '', password: '' },
+        bearer: { token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.Fzyj62HwBhH2bNZkd9x1fd2s8TIuzUO8JmDMLAcPALY' },
+      },
+    },
+    spec: {
+      url: '/public/api-json',
+    },
+  }),
+);
 
 // Public routes
 app.route('/public/todo', todoPublic);

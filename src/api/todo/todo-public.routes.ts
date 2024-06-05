@@ -1,4 +1,4 @@
-import { OpenAPIHono } from '@hono/zod-openapi';
+import { OpenAPIHono, createRoute } from '@hono/zod-openapi';
 import { controller } from '@src/middlewares/controller.middleware';
 import { OpenAPIRoute } from '@src/middlewares/open-api.middleware';
 import { getAllTodosController } from './todo.contoller';

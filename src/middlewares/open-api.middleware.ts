@@ -10,13 +10,13 @@ type RouteConfig = {
   method: 'get' | 'post' | 'delete' | 'put';
   path: string;
   request?: {
-    body: {
+    body?: {
       content: {
         'application/json': { schema: Dto['body'] };
       };
     };
-    params: Dto['params'];
-    query: Dto['queryParams'];
+    params?: Dto['params'];
+    query?: Dto['queryParams'];
   };
   responses: {
     200: {
@@ -67,12 +67,13 @@ export class OpenAPIRoute {
   }
 
   static createDto(dto: Dto): RouteConfig['request'] {
-    return {
-      body: {
-        content: {
-          'application/json': { schema: dto.body },
-        },
+    const body = {
+      content: {
+        'application/json': { schema: dto?.body },
       },
+    };
+    return {
+      body: dto.body ? body : undefined,
       params: dto.params,
       query: dto.queryParams,
     };
