@@ -18,7 +18,7 @@ app.doc('/public/api-json', {});
 app.get(
   '/public/api',
   apiReference({
-    pageTitle: 'Create Hono Cloudflare Workers REST API',
+    pageTitle: 'Hono REST API',
     hideDownloadButton: true,
     authentication: {
       http: {
