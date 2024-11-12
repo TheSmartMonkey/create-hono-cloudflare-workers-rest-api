@@ -26,4 +26,8 @@ export default {
       },
     ],
   },
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/dist/', // Ignore tests in the dist folder
+  ],
 };

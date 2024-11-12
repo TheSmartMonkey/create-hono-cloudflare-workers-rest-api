@@ -20,7 +20,7 @@
   },
 
   "include": ["src"],
-  "exclude": ["node_modules/**/*", ".wrangler/**/*", "dist"],
+  "exclude": ["node_modules/**/*", ".wrangler/**/*", "dist/**/*"],
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   }
