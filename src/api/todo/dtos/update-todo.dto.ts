@@ -4,9 +4,11 @@ import { z } from 'zod';
 
 export const updateTodoDto = {
   body: z.object({}),
-  params: z.object({
-    todoId: z.string().openapi({ example: '1234' }),
-  }).openapi('updateTodoDtoParams'),
+  params: z
+    .object({
+      todoId: z.string().openapi({ example: '1234' }),
+    })
+    .openapi('updateTodoDtoParams'),
   queryParams: z.object({}),
 };
 

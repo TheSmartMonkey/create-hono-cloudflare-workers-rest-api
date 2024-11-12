@@ -1,8 +1,8 @@
 {
   "scripts": {
     "fix": "npm run lint && npm run format",
-    "lint": "eslint src --ext .ts --fix",
-    "lint:check": "eslint src --ext .ts",
+    "lint": "eslint src/**/*.ts --fix",
+    "lint:check": "eslint src/**/*.ts",
     "type:check": "tsc",
     "format": "npx prettier --write .",
     "format:check": "npx prettier --check .",
@@ -35,7 +35,7 @@
     "cross-env": "^7.0.3",
     "esbuild": "^0.24.0",
     "esbuild-jest": "^0.5.0",
-    "eslint": "^9.14.0",
+    "eslint": "^8.24.0",
     "eslint-plugin-jest": "^28.9.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-you-dont-need-lodash-underscore": "^6.14.0",

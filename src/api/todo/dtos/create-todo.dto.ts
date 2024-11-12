@@ -3,9 +3,11 @@ import { User } from '@src/models/user.model';
 import { z } from 'zod';
 
 export const createTodoDto = {
-  body: z.object({
-    name: z.string().openapi({ example: 'john' }),
-  }).openapi('createTodoDtoBody'),
+  body: z
+    .object({
+      name: z.string().openapi({ example: 'john' }),
+    })
+    .openapi('createTodoDtoBody'),
   params: z.object({}),
   queryParams: z.object({}),
 };
