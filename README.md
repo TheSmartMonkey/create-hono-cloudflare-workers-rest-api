@@ -18,55 +18,49 @@
 
 ## Getting Started
 
-1. Clone the template:
+```sh
+npx degit https://github.com/TheSmartMonkey/create-hono-cloudflare-workers-rest-api backend
+```
 
-   ```sh
-   npx degit https://github.com/TheSmartMonkey/create-hono-cloudflare-workers-rest-api backend
-   ```
+Create a `wrangler.toml` based on `wrangler.default.toml`
 
-2. Create a `wrangler.toml` from `wrangler.default.toml`.
+Install dependancies
 
-3. Install dependencies:
+```sh
+bun i
+```
 
-   ```sh
-   bun i
-   ```
+Start coding 🧑‍💻
 
-4. Start coding:
+```sh
+bun start
+```
 
-   ```sh
-   bun start
-   ```
+Deploy to cloudflare 🚀
 
-5. Deploy to Cloudflare:
-
-   ```sh
-   bun run deploy
-   ```
+```sh
+bun run deploy
+```
 
 ## Testing
 
-Run all tests:
+Test you code 🧪
 
 ```sh
 bun run test
 ```
 
-### Types of Tests
+### Run Specific Tests
 
-**Unit Tests**: Test individual components or functions
-
-**Integration Tests**: Test your code with external dependencies like databases, APIs, etc
-
-#### Run Specific Tests
-
-Unit Tests:
+Run unit tests 🧪
+*Test individual components or functions*
 
 ```sh
 bun run unit
 ```
 
-Integration Tests:
+Run integration tests 🧪
+*Test your code with external dependencies like databases, APIs, etc*
 
 ```sh
 bun run integration
@@ -92,7 +86,7 @@ This helps in organizing and running specific groups of tests
 
 ## More Commands
 
-Beautify code:
+Fix you code to make it Beautiful 🦋
 
 ```sh
 bun run fix
