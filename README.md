@@ -52,13 +52,13 @@ Run all tests:
 bun run test
 ```
 
-## Types of Tests
+### Types of Tests
 
 **Unit Tests**: Test individual components or functions
 
 **Integration Tests**: Test your code with external dependencies like databases, APIs, etc
 
-### Run Specific Tests
+#### Run Specific Tests
 
 Unit Tests:
 
@@ -72,7 +72,7 @@ Integration Tests:
 bun run integration
 ```
 
-## Grouping Tests
+### Grouping Tests
 
 Tests are grouped using Jest's `@group` annotation:
 
