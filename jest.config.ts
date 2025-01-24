@@ -19,12 +19,6 @@ export default {
         isolatedModules: true,
       },
     ],
-    '\\.html?$': [
-      'esbuild-jest',
-      {
-        loader: { '.html': 'text' }, // see https://esbuild.github.io/content-types/
-      },
-    ],
   },
   testPathIgnorePatterns: [
     '/node_modules/',
