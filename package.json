@@ -24,9 +24,6 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241112.0",
     "@jest/globals": "^29.7.0",
-    "@types/aws-lambda": "^8.10.145",
-    "@types/dotenv": "^8.2.3",
-    "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.9.0",
     "@typescript-eslint/eslint-plugin": "^8.14.0",
