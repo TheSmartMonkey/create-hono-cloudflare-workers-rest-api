@@ -22,11 +22,12 @@ export function controller<T>(
 ): (c: Context) => Promise<Response & TypedResponse> {
   return async (c: Context): Promise<Response & TypedResponse> => {
     try {
-      const body = await c.req.parseBody();
+      const body = await parseBody(c);
       const params = c.req.param();
       const queryParams = c.req.query();
       const user = c.get('user');
       const env: EnvVariables = c.env;
+
       const data: T = await callback({ body, params, queryParams, user, env });
       const response: HttpResponse<T> = {
         message: camelToUppercaseSnakeCase(callback.name),
@@ -47,4 +48,17 @@ export function controller<T>(
 
 function camelToUppercaseSnakeCase(str: string): Uppercase<string> {
   return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`).toUpperCase() as Uppercase<string>;
+}
+
+function parseBody(c: Context): Promise<any> {
+  const method = c.req.method;
+  if (method === 'GET' || method === 'HEAD') {
+    return Promise.resolve({});
+  }
+
+  const contentType = c.req.header('content-type');
+  if (contentType?.includes('application/json')) {
+    return c.req.json();
+  }
+  return Promise.resolve({});
 }

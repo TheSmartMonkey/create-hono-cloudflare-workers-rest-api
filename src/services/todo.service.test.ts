@@ -1,14 +1,14 @@
 /**
  * @group unit
  */
-import { getAllUserTodos, getAllTodos, getTodoById, deleteTodo, updateTodo } from './todo.service';
+import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from './todo.service';
 
 describe('Todo Service', () => {
   describe('getAllUserTodos', () => {
     test('should return a string with the user ID', async () => {
       const userId = 'user-id';
       const result = await getAllUserTodos(userId);
-      expect(result).toBe('List Todos: ' + userId);
+      expect(result).toBe('List Todos of user: ' + userId);
     });
   });
 

@@ -10,6 +10,8 @@
 
 🔐 JWT token Authentication
 
+📚 Swagger UI and openapi documentation
+
 ✅ Route validation with [zod](https://zod.dev/)
 
 🧪 Testing with [jest](https://jestjs.io/fr/)
@@ -42,6 +44,16 @@ Deploy to cloudflare 🚀
 bun run deploy
 ```
 
+Swagger UI 📚 : `http://127.0.0.1:8787/public/api`
+
+You can add the JWT token in the Authorize button in the top right corner
+
+Exemple token with secret `1234` :
+
+```sh
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmYWtlVXNlcklkIiwiZW1haWwiOiJmYWtlRW1haWwiLCJpYXQiOjE3NDAyMjUwODh9.PcHnkcIxknYZbaR7G4R0KaYAWAKeaHJ5cZYIUIPSYRA
+```
+
 ## Testing
 
 Test you code 🧪
@@ -53,14 +65,14 @@ bun run test
 ### Run Specific Tests
 
 Run unit tests 🧪
-*Test individual components or functions*
+_Test individual components or functions_
 
 ```sh
 bun run unit
 ```
 
 Run integration tests 🧪
-*Test your code with external dependencies like databases, APIs, etc*
+_Test your code with external dependencies like databases, APIs, etc_
 
 ```sh
 bun run integration

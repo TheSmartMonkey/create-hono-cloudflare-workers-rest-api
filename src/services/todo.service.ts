@@ -1,5 +1,5 @@
 export async function getAllUserTodos(userId: string): Promise<string> {
-  return 'List Todos: ' + userId;
+  return 'List Todos of user: ' + userId;
 }
 
 export async function getAllTodos(): Promise<string> {

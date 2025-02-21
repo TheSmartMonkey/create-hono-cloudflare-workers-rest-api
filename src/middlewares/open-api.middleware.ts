@@ -1,10 +1,4 @@
-import { ZodSchema } from 'zod';
-
-type Dto = {
-  body?: ZodSchema;
-  params?: ZodSchema;
-  queryParams?: ZodSchema;
-};
+import { DtoSchema } from '@src/models/global/dto.model';
 
 type RouteConfig = {
   method: 'get' | 'post' | 'delete' | 'put';
@@ -12,11 +6,11 @@ type RouteConfig = {
   request?: {
     body?: {
       content: {
-        'application/json': { schema: Dto['body'] };
+        'application/json': { schema: DtoSchema['body'] };
       };
     };
-    params?: Dto['params'];
-    query?: Dto['queryParams'];
+    params?: DtoSchema['params'];
+    query?: DtoSchema['queryParams'];
   };
   responses: {
     200: {
@@ -29,23 +23,23 @@ type RouteConfig = {
 };
 
 export class OpenAPIRoute {
-  static get(path: string, dto?: Dto): any {
+  static get(path: string, dto?: DtoSchema): any {
     return OpenAPIRoute.createRoute('get', path, dto);
   }
 
-  static post(path: string, dto?: Dto): any {
+  static post(path: string, dto?: DtoSchema): any {
     return OpenAPIRoute.createRoute('post', path, dto);
   }
 
-  static delete(path: string, dto?: Dto): any {
+  static delete(path: string, dto?: DtoSchema): any {
     return OpenAPIRoute.createRoute('delete', path, dto);
   }
 
-  static put(path: string, dto?: Dto): any {
+  static put(path: string, dto?: DtoSchema): any {
     return OpenAPIRoute.createRoute('put', path, dto);
   }
 
-  static createRoute(method: RouteConfig['method'], path: string, dto?: Dto): RouteConfig {
+  static createRoute(method: RouteConfig['method'], path: string, dto?: DtoSchema): RouteConfig {
     const routeConfig: RouteConfig = {
       method,
       path,
@@ -66,14 +60,20 @@ export class OpenAPIRoute {
     return routeConfig;
   }
 
-  static createDto(dto: Dto): RouteConfig['request'] {
-    const body = {
-      content: {
-        'application/json': { schema: dto?.body },
-      },
-    };
+  static createDto(dto: DtoSchema): RouteConfig['request'] {
+    if (dto.body) {
+      const body = {
+        content: {
+          'application/json': { schema: dto?.body },
+        },
+      };
+      return {
+        body,
+        params: dto.params,
+        query: dto.queryParams,
+      };
+    }
     return {
-      body: dto.body ? body : undefined,
       params: dto.params,
       query: dto.queryParams,
     };

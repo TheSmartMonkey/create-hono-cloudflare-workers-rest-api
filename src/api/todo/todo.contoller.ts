@@ -19,8 +19,8 @@ export async function createTodoController({ body }: CreateTodoDto): Promise<Cre
   return body;
 }
 
-export async function getAllTodosController({ env }: { env: EnvVariables }): Promise<string> {
-  logger.info({ env });
+export async function getAllTodosController({ env, body }: { env: EnvVariables; body: any }): Promise<string> {
+  logger.info({ env, body });
   const token = await sign({}, '1234');
   logger.info(token);
   return getAllTodos();
