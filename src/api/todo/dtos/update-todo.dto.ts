@@ -1,5 +1,4 @@
-import { EnvVariables } from '@/helpers/env';
-import { User } from '@/models/user.model';
+import { DtoObject } from '@/models/global/dto.model';
 import { z } from 'zod';
 
 export const updateTodoDto = {
@@ -7,11 +6,6 @@ export const updateTodoDto = {
     .object({
       todoId: z.string().openapi({ example: '1234' }),
     })
+    // TODO: Add to openapi schema
     .openapi('updateTodoDtoParams'),
-};
-
-export type UpdateTodo = {
-  params: z.infer<typeof updateTodoDto.params>;
-  user: User;
-  env: EnvVariables;
-};
+} satisfies DtoObject;

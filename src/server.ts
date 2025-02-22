@@ -27,6 +27,7 @@ app.get(
   }),
 );
 
+// TODO: Genetrate nodejs / react / ... service from openapi
 app.doc('/public/api-json', {
   info: {
     title: 'Hono REST API',

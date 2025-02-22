@@ -1,5 +1,4 @@
-import { EnvVariables } from '@/helpers/env';
-import { User } from '@/models/user.model';
+import { DtoObject } from '@/models/global/dto.model';
 import { z } from 'zod';
 
 export const createTodoDto = {
@@ -8,10 +7,4 @@ export const createTodoDto = {
       name: z.string().openapi({ example: 'john' }),
     })
     .openapi('createTodoDtoBody'),
-};
-
-export type CreateTodoDto = {
-  body: z.infer<typeof createTodoDto.body>;
-  user: User;
-  env: EnvVariables;
-};
+} satisfies DtoObject;
