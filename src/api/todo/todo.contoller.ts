@@ -1,8 +1,8 @@
-import { EnvVariables } from '@src/helpers/env';
-import { logger } from '@src/helpers/logger';
-import { HttpError } from '@src/models/global/http.model';
-import { User } from '@src/models/user.model';
-import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from '@src/services/todo.service';
+import { EnvVariables } from '@/helpers/env';
+import { logger } from '@/helpers/logger';
+import { HttpError } from '@/models/global/http.model';
+import { User } from '@/models/user.model';
+import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from '@/services/todo.service';
 import { sign } from 'hono/jwt';
 import { CreateTodoDto } from './dtos/create-todo.dto';
 import { DeleteTodoDto } from './dtos/delete-todo.dto';

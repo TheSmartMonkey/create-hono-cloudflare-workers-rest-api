@@ -1,7 +1,7 @@
-import { EnvVariables } from '@src/helpers/env';
-import { logger } from '@src/helpers/logger';
-import { HttpError, HttpResponse } from '@src/models/global/http.model';
-import { User } from '@src/models/user.model';
+import { EnvVariables } from '@/helpers/env';
+import { logger } from '@/helpers/logger';
+import { HttpError, HttpResponse } from '@/models/global/http.model';
+import { User } from '@/models/user.model';
 import { Context, TypedResponse } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 

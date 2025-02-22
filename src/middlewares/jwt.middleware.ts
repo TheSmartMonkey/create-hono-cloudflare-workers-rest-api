@@ -1,5 +1,5 @@
-import { logger } from '@src/helpers/logger';
-import { HttpError } from '@src/models/global/http.model';
+import { logger } from '@/helpers/logger';
+import { HttpError } from '@/models/global/http.model';
 import { Context, Next } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { verify } from 'hono/jwt';

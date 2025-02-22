@@ -1,4 +1,4 @@
-import { logger } from '@src/helpers/logger';
+import { logger } from '@/helpers/logger';
 import { HTTPException } from 'hono/http-exception';
 
 // TODO: app.onError((err, c) => { return json as context

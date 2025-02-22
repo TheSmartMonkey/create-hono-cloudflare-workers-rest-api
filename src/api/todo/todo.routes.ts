@@ -1,6 +1,6 @@
+import { controller } from '@/middlewares/controller.middleware';
+import { OpenAPIRoute } from '@/middlewares/open-api.middleware';
 import { OpenAPIHono } from '@hono/zod-openapi';
-import { controller } from '@src/middlewares/controller.middleware';
-import { OpenAPIRoute } from '@src/middlewares/open-api.middleware';
 import { createTodoDto } from './dtos/create-todo.dto';
 import { deleteTodoDto } from './dtos/delete-todo.dto';
 import { getTodoByIdDto } from './dtos/get-todo-by-id.dto';

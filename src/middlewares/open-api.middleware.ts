@@ -1,4 +1,4 @@
-import { DtoSchema } from '@src/models/global/dto.model';
+import { DtoSchema } from '@/models/global/dto.model';
 
 type RouteConfig = {
   method: 'get' | 'post' | 'delete' | 'put';

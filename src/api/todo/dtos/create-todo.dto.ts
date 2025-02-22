@@ -1,5 +1,5 @@
-import { EnvVariables } from '@src/helpers/env';
-import { User } from '@src/models/user.model';
+import { EnvVariables } from '@/helpers/env';
+import { User } from '@/models/user.model';
 import { z } from 'zod';
 
 export const createTodoDto = {

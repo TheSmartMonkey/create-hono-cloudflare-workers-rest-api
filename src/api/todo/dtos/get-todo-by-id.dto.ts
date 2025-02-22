@@ -1,5 +1,5 @@
-import { EnvVariables } from '@src/helpers/env';
-import { User } from '@src/models/user.model';
+import { EnvVariables } from '@/helpers/env';
+import { User } from '@/models/user.model';
 import { z } from 'zod';
 
 export const getTodoByIdDto = {
@@ -11,6 +11,7 @@ export const getTodoByIdDto = {
     .openapi('getTodoByIdDtoParams'),
 };
 
+// TODO: Use a Dto type ex: Dto<typeof getTodoByIdDto>
 export type GetTodoById = {
   params: z.infer<typeof getTodoByIdDto.params>;
   user: User;
