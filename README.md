@@ -20,6 +20,8 @@
 
 ## Getting Started
 
+Create a new project
+
 ```sh
 npx degit https://github.com/TheSmartMonkey/create-hono-cloudflare-workers-rest-api backend
 ```
@@ -44,7 +46,7 @@ Deploy to cloudflare 🚀
 bun run deploy
 ```
 
-Swagger UI 📚 : `http://127.0.0.1:8787/public/api`
+Swagger UI 📚 : http://127.0.0.1:8787/public/api
 
 You can add the JWT token in the Authorize button in the top right corner
 
