@@ -1,4 +1,4 @@
-import { EnvVariables } from '@/helpers/env';
+import { EnvVariables } from '@/common/env';
 import { z } from 'zod';
 import { User } from '../user.model';
 

@@ -2,8 +2,8 @@ import { swaggerUI } from '@hono/swagger-ui';
 import { OpenAPIHono } from '@hono/zod-openapi';
 import todoPublic from './api/todo/todo-public.routes';
 import todo from './api/todo/todo.routes';
-import { EnvVariables } from './helpers/env';
-import { logger } from './helpers/logger';
+import { EnvVariables } from './common/env';
+import { logger } from './common/logger';
 import { errorHandler } from './middlewares/error-handler.middleware';
 import { jwtMiddleware } from './middlewares/jwt.middleware';
 

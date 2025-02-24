@@ -1,4 +1,4 @@
-import { logger } from '@/helpers/logger';
+import { logger } from '@/common/logger';
 import { HttpError } from '@/models/global/http.model';
 import { Context, Next } from 'hono';
 import { HTTPException } from 'hono/http-exception';
