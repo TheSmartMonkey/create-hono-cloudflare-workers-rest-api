@@ -1,4 +1,4 @@
-import { DtoObject } from '@/models/global/dto.model';
+import { Dto, DtoObject } from '@/models/global/dto.model';
 import { z } from 'zod';
 
 export const updateTodoDto = {
@@ -9,3 +9,5 @@ export const updateTodoDto = {
     // TODO: Add to openapi schema
     .openapi('updateTodoDtoParams'),
 } satisfies DtoObject;
+
+export type UpdateTodoDto = Dto<typeof updateTodoDto>;

@@ -1,4 +1,4 @@
-import { DtoObject } from '@/models/global/dto.model';
+import { Dto, DtoObject } from '@/models/global/dto.model';
 import { z } from 'zod';
 
 export const getTodoByIdDto = {
@@ -6,3 +6,5 @@ export const getTodoByIdDto = {
     todoId: z.string().openapi({ example: '1234' }),
   }),
 } satisfies DtoObject;
+
+export type GetTodoByIdDto = Dto<typeof getTodoByIdDto>;

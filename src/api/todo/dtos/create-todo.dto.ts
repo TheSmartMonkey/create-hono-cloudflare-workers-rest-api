@@ -1,4 +1,4 @@
-import { DtoObject } from '@/models/global/dto.model';
+import { Dto, DtoObject } from '@/models/global/dto.model';
 import { z } from 'zod';
 
 export const createTodoDto = {
@@ -8,3 +8,5 @@ export const createTodoDto = {
     })
     .openapi('createTodoDtoBody'),
 } satisfies DtoObject;
+
+export type CreateTodoDto = Dto<typeof createTodoDto>;

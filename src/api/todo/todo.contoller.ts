@@ -1,16 +1,15 @@
 import { EnvVariables } from '@/helpers/env';
 import { logger } from '@/helpers/logger';
-import { Dto } from '@/models/global/dto.model';
 import { HttpError } from '@/models/global/http.model';
 import { User } from '@/models/user.model';
 import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from '@/services/todo.service';
 import { sign } from 'hono/jwt';
-import { createTodoDto } from './dtos/create-todo.dto';
-import { deleteTodoDto } from './dtos/delete-todo.dto';
-import { getTodoByIdDto } from './dtos/get-todo-by-id.dto';
-import { updateTodoDto } from './dtos/update-todo.dto';
+import { CreateTodoDto } from './dtos/create-todo.dto';
+import { DeleteTodoDto } from './dtos/delete-todo.dto';
+import { GetTodoByIdDto } from './dtos/get-todo-by-id.dto';
+import { UpdateTodoDto } from './dtos/update-todo.dto';
 
-export async function createTodoController({ body }: Dto<typeof createTodoDto>): Promise<Dto<typeof createTodoDto>['body']> {
+export async function createTodoController({ body }: CreateTodoDto): Promise<CreateTodoDto['body']> {
   // Just to test error middleware
   logger.info({ body });
   if (Object.keys(body).length === 0) {
@@ -31,15 +30,15 @@ export async function getAllUserTodosController({ user }: { user: User }): Promi
   return getAllUserTodos(user.userId);
 }
 
-export async function getTodoByIdController({ params, user }: Dto<typeof getTodoByIdDto>): Promise<string> {
+export async function getTodoByIdController({ params, user }: GetTodoByIdDto): Promise<string> {
   logger.info({ user });
   return getTodoById(params.todoId);
 }
 
-export async function deleteTodoController({ params }: Dto<typeof deleteTodoDto>): Promise<string> {
+export async function deleteTodoController({ params }: DeleteTodoDto): Promise<string> {
   return deleteTodo(params.todoId);
 }
 
-export async function updateTodoController({ params }: Dto<typeof updateTodoDto>): Promise<string> {
+export async function updateTodoController({ params }: UpdateTodoDto): Promise<string> {
   return updateTodo(params.todoId);
 }

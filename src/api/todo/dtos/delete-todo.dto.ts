@@ -1,4 +1,4 @@
-import { DtoObject } from '@/models/global/dto.model';
+import { Dto, DtoObject } from '@/models/global/dto.model';
 import { z } from 'zod';
 
 export const deleteTodoDto = {
@@ -8,3 +8,5 @@ export const deleteTodoDto = {
     })
     .openapi('deleteTodoDtoParams'),
 } satisfies DtoObject;
+
+export type DeleteTodoDto = Dto<typeof deleteTodoDto>;
