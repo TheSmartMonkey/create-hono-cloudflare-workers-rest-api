@@ -1,4 +1,3 @@
-import { validateEnvVariables } from '@/common/env';
 import { logger } from '@/common/logger';
 import { HttpError, HttpResponse } from '@/models/global/http.model';
 import { User } from '@/models/user.model';
@@ -11,7 +10,6 @@ export function controller<T>(
 ): (c: Context) => Promise<Response & TypedResponse> {
   return async (c: Context): Promise<Response & TypedResponse> => {
     try {
-      validateEnvVariables(c.env);
       const body = await parseBody(c);
       const params = c.req.param();
       const queryParams = c.req.query();
