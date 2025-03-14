@@ -1,4 +1,4 @@
-import { EnvVariables } from '@/common/env';
+import { getEnv } from '@/common/env';
 import { logger } from '@/common/logger';
 import { HttpError } from '@/models/global/http.model';
 import { User } from '@/models/user.model';
@@ -19,9 +19,10 @@ export async function createTodoController({ body }: CreateTodoDto): Promise<Cre
   return body;
 }
 
-export async function getAllTodosController({ env, body }: { env: EnvVariables; body: any }): Promise<string> {
+export async function getAllTodosController({ body }: { body: any }): Promise<string> {
+  const env = getEnv();
   logger.info({ env, body });
-  const token = await sign({}, '1234');
+  const token = await sign({}, env.JWT_SECRET);
   logger.info(token);
   return getAllTodos();
 }

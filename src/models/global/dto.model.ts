@@ -1,4 +1,3 @@
-import { EnvVariables } from '@/common/env';
 import { z } from 'zod';
 import { User } from '../user.model';
 
@@ -19,5 +18,4 @@ export type Dto<T extends DtoObject> = {
   params: z.infer<NonNullable<T['params']>>;
   queryParams: z.infer<NonNullable<T['queryParams']>>;
   user: User;
-  env: EnvVariables;
 };

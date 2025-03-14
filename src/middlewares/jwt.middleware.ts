@@ -13,7 +13,7 @@ export async function jwtMiddleware(c: Context, next: Next): Promise<any> {
     const token = authHeader.split(' ')[1];
     if (!token) throw new HttpError(401, 'TOKEN_IS_UNDEFINED');
 
-    const jwtSecret = c.env.JWT_SECRET || '1234';
+    const jwtSecret = c.env.JWT_SECRET;
     const user = await verify(token, jwtSecret);
     c.set('user', user);
     logger.info({ user });
