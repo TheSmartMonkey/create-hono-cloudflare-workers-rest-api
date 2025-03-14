@@ -1,10 +1,24 @@
 import { logger } from '@/common/logger';
+import { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 
-// TODO: app.onError((err, c) => { return json as context
-export function errorHandler(error: Error): any {
+export function errorHandler(error: Error, c: Context): Response {
   logger.error(error);
+
   if (error instanceof HTTPException) {
-    return error.getResponse();
+    return c.json(
+      {
+        message: error.message,
+        status: error.status,
+      },
+      error.status,
+    );
   }
+
+  return c.json(
+    {
+      message: 'INTERNAL_SERVER_ERROR',
+    },
+    500,
+  );
 }
