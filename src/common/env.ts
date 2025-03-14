@@ -1,4 +1,3 @@
-// TODO: Env variables validation and update wrangler env file
 import { EnvVariables } from '@/models/global/env.model';
 
 export let ENV_VARIABLES: EnvVariables;
