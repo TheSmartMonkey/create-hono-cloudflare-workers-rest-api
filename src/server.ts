@@ -1,12 +1,11 @@
 import { swaggerUI } from '@hono/swagger-ui';
 import { OpenAPIHono } from '@hono/zod-openapi';
-import todoPublic from './api/todo/todo-public.routes';
-import todo from './api/todo/todo.routes';
 import { logger } from './common/logger';
 import { errorHandler } from './middlewares/error-handler.middleware';
 import { jwtMiddleware } from './middlewares/jwt.middleware';
 import { envMiddleware } from './middlewares/validate-env.middleware';
 import { EnvVariables } from './models/global/env.model';
+import routes from './routes';
 
 const app = new OpenAPIHono<{ Bindings: EnvVariables }>();
 
@@ -45,11 +44,7 @@ app.doc('/public/api-json', {
   ],
 });
 
-// Public routes
-app.route('/public/todo', todoPublic);
-
-// Auth routes
-app.route('/todo', todo);
+app.route('/', routes);
 
 logger.info('Api: http://127.0.0.1:8787');
 logger.info('Swagger: http://127.0.0.1:8787/public/api');
