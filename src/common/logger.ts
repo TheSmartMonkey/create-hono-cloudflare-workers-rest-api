@@ -1,8 +1,23 @@
 import pino from 'pino';
 
-export const logger = pino({ level: 'info' });
+let instance: pino.Logger | null = null;
 
-// Redefined console.log for external libs that have
-// the bad idea to use it
-// eslint-disable-next-line no-console
-console.log = (...args): void => logger.debug({ src: 'console.log', args });
+function getInstance(): pino.Logger {
+  if (!instance) {
+    instance = pino({ level: 'info' });
+  }
+  return instance;
+}
+
+export function info(message: string | object): void {
+  getInstance().info(message);
+}
+
+export function error(message: string, ...args: any[]): void {
+  getInstance().error({ args }, message);
+}
+
+export const logger = {
+  info,
+  error,
+};

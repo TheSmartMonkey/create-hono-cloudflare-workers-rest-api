@@ -1,4 +1,3 @@
-import { logger } from '@/common/logger';
 import { HttpError, HttpResponse } from '@/models/global/http.model';
 import { User } from '@/models/user.model';
 import { Context, TypedResponse } from 'hono';
@@ -6,7 +5,6 @@ import { HTTPException } from 'hono/http-exception';
 
 export function controller<T>(
   callback: ({ body, params, queryParams, user }: { body: any; params: any; queryParams: any; user: User }) => Promise<T>,
-  logResponse = true,
 ): (c: Context) => Promise<Response & TypedResponse> {
   return async (c: Context): Promise<Response & TypedResponse> => {
     try {
@@ -20,9 +18,6 @@ export function controller<T>(
         message: camelToUppercaseSnakeCase(callback.name),
         data,
       };
-      if (logResponse) {
-        logger.info(response);
-      }
       return c.json(response);
     } catch (error) {
       if (error instanceof HttpError) {
