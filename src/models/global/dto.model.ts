@@ -1,5 +1,5 @@
+import { User } from '@/models/user.model';
 import { z } from 'zod';
-import { User } from '../user.model';
 
 export type DtoObject = {
   body?: z.ZodType;

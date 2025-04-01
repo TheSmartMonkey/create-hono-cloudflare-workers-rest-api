@@ -8,7 +8,36 @@ type RouteConfig = {
     params?: DtoSchema['params'];
     query?: DtoSchema['queryParams'];
   };
-  responses: { 200: { description: 'OK_SUCCESS' }; 201: { description: 'CREATE_SUCCESS' } };
+  responses: {
+    200: {
+      description: 'OK_SUCCESS';
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object';
+            properties: {
+              message: { type: 'string' };
+              data: { type: 'object' };
+            };
+          };
+        };
+      };
+    };
+    201: {
+      description: 'CREATE_SUCCESS';
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object';
+            properties: {
+              message: { type: 'string' };
+              data: { type: 'object' };
+            };
+          };
+        };
+      };
+    };
+  };
 };
 
 export const route = {
@@ -22,7 +51,36 @@ function createRoute(method: RouteConfig['method'], path: string, dto?: DtoSchem
   const routeConfig: RouteConfig = {
     method,
     path,
-    responses: { 200: { description: 'OK_SUCCESS' }, 201: { description: 'CREATE_SUCCESS' } },
+    responses: {
+      200: {
+        description: 'OK_SUCCESS',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                message: { type: 'string' },
+                data: { type: 'object' }
+              }
+            }
+          }
+        }
+      },
+      201: {
+        description: 'CREATE_SUCCESS',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object', 
+              properties: {
+                message: { type: 'string' },
+                data: { type: 'object' }
+              }
+            }
+          }
+        }
+      }
+    }
   };
 
   if (dto) {
