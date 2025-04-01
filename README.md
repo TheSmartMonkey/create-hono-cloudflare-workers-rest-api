@@ -56,6 +56,12 @@ Exemple token with secret `1234` :
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmYWtlVXNlcklkIiwiZW1haWwiOiJmYWtlRW1haWwiLCJpYXQiOjE3NDAyMjUwODh9.PcHnkcIxknYZbaR7G4R0KaYAWAKeaHJ5cZYIUIPSYRA
 ```
 
+## Generate openapi spec
+
+```sh
+bun run genapi
+```
+
 ## Testing
 
 Test you code 🧪

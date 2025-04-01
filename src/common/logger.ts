@@ -9,11 +9,11 @@ function getInstance(): pino.Logger {
   return instance;
 }
 
-export function info(message: string | object): void {
+function info(message: string | object): void {
   getInstance().info(message);
 }
 
-export function error(message: string, ...args: any[]): void {
+function error(message: string, ...args: any[]): void {
   getInstance().error({ args }, message);
 }
 
