@@ -1,13 +1,13 @@
-import { DtoSchema } from '@/models/global/dto.model';
+import { InputSchema } from '@/models/global/schema.model';
 import { z } from 'zod';
 
 type RouteConfig = {
   method: 'get' | 'post' | 'delete' | 'put';
   path: string;
   request?: {
-    body?: { content: { 'application/json': { schema: DtoSchema['body'] } } };
-    params?: DtoSchema['params'];
-    query?: DtoSchema['queryParams'];
+    body?: { content: { 'application/json': { schema: InputSchema['body'] } } };
+    params?: InputSchema['params'];
+    query?: InputSchema['queryParams'];
   };
   responses: {
     200: {
@@ -18,19 +18,11 @@ type RouteConfig = {
         };
       };
     };
-    201: {
-      description: 'CREATE_SUCCESS';
-      content: {
-        'application/json': {
-          schema: z.ZodType;
-        };
-      };
-    };
   };
 };
 
 type RouteValidation = {
-  input?: DtoSchema;
+  input?: InputSchema;
   output?: z.ZodType;
 };
 
@@ -58,25 +50,17 @@ function createRoute(method: RouteConfig['method'], path: string, { input, outpu
           },
         },
       },
-      201: {
-        description: 'CREATE_SUCCESS',
-        content: {
-          'application/json': {
-            schema: output || defaultOutputSchema,
-          },
-        },
-      },
     },
   };
 
   if (input) {
-    routeConfig.request = createDto(input);
+    routeConfig.request = createInputSchema(input);
   }
 
   return routeConfig;
 }
 
-function createDto(dto: DtoSchema): RouteConfig['request'] {
+function createInputSchema(dto: InputSchema): RouteConfig['request'] {
   if (dto.body) {
     const body = { content: { 'application/json': { schema: dto?.body } } };
     return { body, params: dto.params, query: dto.queryParams };

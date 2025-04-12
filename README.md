@@ -12,6 +12,8 @@
 
 📚 Swagger UI and openapi documentation
 
+TODO: Openapi code gen
+
 ✅ Route validation with [zod](https://zod.dev/)
 
 🧪 Testing with [jest](https://jestjs.io/fr/)
