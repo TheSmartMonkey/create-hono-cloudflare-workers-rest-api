@@ -18,7 +18,10 @@ const todo = new OpenAPIHono();
 todo.openapi(route.get('/user'), controller(getAllUserTodosController));
 todo.openapi(route.get('/todoId/{todoId}', { input: getTodoByIdInput, output: getTodoByIdOutput }), controller(getTodoByIdController));
 todo.openapi(route.post('/', { input: createTodoInput, output: createTodoOutput }), controller(createTodoController));
-todo.openapi(route.delete('/todoId/{todoId}', { input: deleteTodoInput, output: deleteTodoOutput }), controller(deleteTodoController));
+todo.openapi(
+  route.delete('/todoId/{todoId}', { input: deleteTodoInput, output: deleteTodoOutput }),
+  controller(deleteTodoController, { useCustomOutput: true }),
+);
 todo.openapi(route.put('/todoId/{todoId}', { input: updateTodoInput, output: updateTodoOutput }), controller(updateTodoController));
 
 export default todo;

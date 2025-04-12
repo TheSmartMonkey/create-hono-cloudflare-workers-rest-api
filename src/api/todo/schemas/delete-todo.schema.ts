@@ -8,5 +8,8 @@ export const deleteTodoInput = {
 } satisfies InputSchemaObject;
 export type DeleteTodoInput = Input<typeof deleteTodoInput>;
 
-export const deleteTodoOutput = z.string();
+export const deleteTodoOutput = z.object({
+  customMessage: z.string(),
+  data: z.string(),
+});
 export type DeleteTodoOutput = Output<typeof deleteTodoOutput>;

@@ -37,7 +37,11 @@ export async function getTodoByIdController({ params, user }: GetTodoByIdInput):
 }
 
 export async function deleteTodoController({ params }: DeleteTodoInput): Promise<DeleteTodoOutput> {
-  return deleteTodo(params.todoId);
+  const data = await deleteTodo(params.todoId);
+  return {
+    customMessage: 'DELETE_TODO_SUCCESS',
+    data,
+  };
 }
 
 export async function updateTodoController({ params }: UpdateTodoInput): Promise<UpdateTodoOutput> {
