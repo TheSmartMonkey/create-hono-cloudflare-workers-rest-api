@@ -33,7 +33,7 @@ async function fetchAndGenerate(): Promise<void> {
     writeFileSync('./swagger.json', JSON.stringify(swaggerJson, null, 2));
 
     logger.info('Generating Angular services...');
-    execSync(`npx @openapitools/openapi-generator-cli generate -i swagger.json -g typescript-angular -o ./dist/api`);
+    execSync('npx @openapitools/openapi-generator-cli generate --generator-key v3.0');
     logger.info('✅ Angular services generated successfully in ./dist');
   } catch (error) {
     logger.error('❌ Error fetching or generating:', error);

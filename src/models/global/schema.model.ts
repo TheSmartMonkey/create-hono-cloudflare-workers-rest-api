@@ -21,8 +21,3 @@ export type Input<T extends InputSchemaObject> = {
 };
 
 export type Output<T extends z.ZodType> = z.infer<T>;
-
-// TODO: OutputSchema use for custom output
-export type OutputSchema = {
-  data: any;
-};

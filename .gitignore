@@ -9,5 +9,5 @@ dist
 bun.lockb
 package-lock.json
 
+# Swagger
 swagger.json
-openapitools.json
