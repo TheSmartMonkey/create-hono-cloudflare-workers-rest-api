@@ -13,7 +13,10 @@
           "supportsES6": true,
           "npmName": "@api/angular",
           "npmVersion": "1.0.0",
-          "withInterfaces": true
+          "withInterfaces": true,
+          "useSingleRequestParameter": true,
+          "apiModulePrefix": "Api",
+          "fileNaming": "kebab-case"
         }
       }
     }

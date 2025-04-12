@@ -15,13 +15,16 @@ import {
 
 const todo = new OpenAPIHono();
 
-todo.openapi(route.get('/user'), controller(getAllUserTodosController));
-todo.openapi(route.get('/todoId/{todoId}', { input: getTodoByIdInput, output: getTodoByIdOutput }), controller(getTodoByIdController));
-todo.openapi(route.post('/', { input: createTodoInput, output: createTodoOutput }), controller(createTodoController));
+todo.openapi(route.get('/user', 'todo'), controller(getAllUserTodosController));
 todo.openapi(
-  route.delete('/todoId/{todoId}', { input: deleteTodoInput, output: deleteTodoOutput }),
+  route.get('/todoId/{todoId}', 'todo', { input: getTodoByIdInput, output: getTodoByIdOutput }),
+  controller(getTodoByIdController),
+);
+todo.openapi(route.post('/', 'todo', { input: createTodoInput, output: createTodoOutput }), controller(createTodoController));
+todo.openapi(
+  route.delete('/todoId/{todoId}', 'todo', { input: deleteTodoInput, output: deleteTodoOutput }),
   controller(deleteTodoController, { useCustomOutput: true }),
 );
-todo.openapi(route.put('/todoId/{todoId}', { input: updateTodoInput, output: updateTodoOutput }), controller(updateTodoController));
+todo.openapi(route.put('/todoId/{todoId}', 'todo', { input: updateTodoInput, output: updateTodoOutput }), controller(updateTodoController));
 
 export default todo;

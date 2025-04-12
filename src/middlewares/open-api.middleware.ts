@@ -19,6 +19,7 @@ type RouteConfig = {
       };
     };
   };
+  tags?: string[];
 };
 
 type RouteValidation = {
@@ -27,13 +28,22 @@ type RouteValidation = {
 };
 
 export const route = {
-  get: (path: string, { input, output }: RouteValidation = {}): any => createRoute('get', path, { input, output }),
-  post: (path: string, { input, output }: RouteValidation = {}): any => createRoute('post', path, { input, output }),
-  delete: (path: string, { input, output }: RouteValidation = {}): any => createRoute('delete', path, { input, output }),
-  put: (path: string, { input, output }: RouteValidation = {}): any => createRoute('put', path, { input, output }),
+  get: (path: string, serviceName: Lowercase<string>, { input, output }: RouteValidation = {}): any =>
+    createRoute('get', path, serviceName, { input, output }),
+  post: (path: string, serviceName: Lowercase<string>, { input, output }: RouteValidation = {}): any =>
+    createRoute('post', path, serviceName, { input, output }),
+  delete: (path: string, serviceName: Lowercase<string>, { input, output }: RouteValidation = {}): any =>
+    createRoute('delete', path, serviceName, { input, output }),
+  put: (path: string, serviceName: Lowercase<string>, { input, output }: RouteValidation = {}): any =>
+    createRoute('put', path, serviceName, { input, output }),
 } as const;
 
-function createRoute(method: RouteConfig['method'], path: string, { input, output }: RouteValidation): RouteConfig {
+function createRoute(
+  method: RouteConfig['method'],
+  path: string,
+  serviceName: Lowercase<string>,
+  { input, output }: RouteValidation,
+): RouteConfig {
   const defaultOutputSchema = z.object({
     message: z.string(),
     data: z.object({}).passthrough(),
@@ -56,6 +66,8 @@ function createRoute(method: RouteConfig['method'], path: string, { input, outpu
   if (input) {
     routeConfig.request = createInputSchema(input);
   }
+
+  routeConfig.tags = [serviceName];
 
   return routeConfig;
 }
