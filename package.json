@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "scripts": {
     "fix": "bun run lint && bun run format",
     "lint": "eslint src/**/*.ts --fix",
@@ -11,7 +12,8 @@
     "undeploy": "wrangler delete --env dev src/server.ts",
     "test": "bun run unit && bun run integration",
     "unit": "cross-env-shell NO_LOGS=true jest --group=unit",
-    "integration": "cross-env-shell NO_LOGS=true jest --group=integration --maxWorkers=1"
+    "integration": "cross-env-shell NO_LOGS=true jest --group=integration --maxWorkers=1",
+    "genapi": "bun run src/swagger.ts"
   },
   "dependencies": {
     "@hono/swagger-ui": "^0.4.1",
@@ -23,6 +25,8 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241112.0",
     "@jest/globals": "^29.7.0",
+    "@openapitools/openapi-generator-cli": "^2.18.4",
+    "@types/bun": "^1.2.6",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.9.0",
     "@typescript-eslint/eslint-plugin": "^8.14.0",
@@ -36,8 +40,8 @@
     "jest-runner-groups": "^2.2.0",
     "prettier": "^3.3.3",
     "ts-jest": "^29.2.5",
-    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.6.3",
     "wrangler": "^3.86.1"
   }

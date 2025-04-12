@@ -9,7 +9,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "types": ["@cloudflare/workers-types", "jest"],
+    "types": ["@cloudflare/workers-types", "jest", "bun-types"],
     "skipLibCheck": true,
 
     "baseUrl": ".",
@@ -21,7 +21,7 @@
 
   "include": ["src"],
   "exclude": ["node_modules/**/*", ".wrangler/**/*", "dist/**/*"],
-  "ts-node": {
+  "tsx": {
     "require": ["tsconfig-paths/register"]
   }
 }

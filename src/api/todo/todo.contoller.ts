@@ -4,12 +4,12 @@ import { HttpError } from '@/models/global/http.model';
 import { User } from '@/models/user.model';
 import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from '@/services/todo.service';
 import { sign } from 'hono/jwt';
-import { CreateTodoDto } from './dtos/create-todo.dto';
-import { DeleteTodoDto } from './dtos/delete-todo.dto';
-import { GetTodoByIdDto } from './dtos/get-todo-by-id.dto';
-import { UpdateTodoDto } from './dtos/update-todo.dto';
+import { CreateTodoInput, CreateTodoOutput } from './schemas/create-todo.schema';
+import { DeleteTodoInput, DeleteTodoOutput } from './schemas/delete-todo.schema';
+import { GetTodoByIdInput, GetTodoByIdOutput } from './schemas/get-todo-by-id.schema';
+import { UpdateTodoInput, UpdateTodoOutput } from './schemas/update-todo.schema';
 
-export async function createTodoController({ body }: CreateTodoDto): Promise<CreateTodoDto['body']> {
+export async function createTodoController({ body }: CreateTodoInput): Promise<CreateTodoOutput> {
   // Just to test error middleware
   logger.info({ body });
   if (Object.keys(body).length === 0) {
@@ -31,15 +31,19 @@ export async function getAllUserTodosController({ user }: { user: User }): Promi
   return getAllUserTodos(user.userId);
 }
 
-export async function getTodoByIdController({ params, user }: GetTodoByIdDto): Promise<string> {
+export async function getTodoByIdController({ params, user }: GetTodoByIdInput): Promise<GetTodoByIdOutput> {
   logger.info({ user });
-  return getTodoById(params.todoId);
+  return await getTodoById(params.todoId);
 }
 
-export async function deleteTodoController({ params }: DeleteTodoDto): Promise<string> {
-  return deleteTodo(params.todoId);
+export async function deleteTodoController({ params }: DeleteTodoInput): Promise<DeleteTodoOutput> {
+  const data = await deleteTodo(params.todoId);
+  return {
+    customMessage: 'DELETE_TODO_SUCCESS',
+    data,
+  };
 }
 
-export async function updateTodoController({ params }: UpdateTodoDto): Promise<string> {
+export async function updateTodoController({ params }: UpdateTodoInput): Promise<UpdateTodoOutput> {
   return updateTodo(params.todoId);
 }

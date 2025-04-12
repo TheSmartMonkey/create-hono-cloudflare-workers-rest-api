@@ -10,7 +10,7 @@ export class HttpError {
   }
 }
 
-export type HttpResponse<TDATA> = {
+export type HttpOutput<TDATA> = {
   message: Uppercase<string>;
   data: TDATA;
 };

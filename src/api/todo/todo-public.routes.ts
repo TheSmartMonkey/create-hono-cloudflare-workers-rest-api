@@ -5,6 +5,6 @@ import { getAllTodosController } from './todo.contoller';
 
 const todoPublic = new OpenAPIHono();
 
-todoPublic.openapi(route.get('/'), controller(getAllTodosController));
+todoPublic.openapi(route.get('/', 'public-todo'), controller(getAllTodosController));
 
 export default todoPublic;

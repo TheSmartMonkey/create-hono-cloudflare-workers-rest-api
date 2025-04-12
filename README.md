@@ -10,7 +10,7 @@
 
 🔐 JWT token Authentication
 
-📚 Swagger UI and openapi documentation
+📚 Swagger UI and openapi documentation (with auto generate code for the frontend)
 
 ✅ Route validation with [zod](https://zod.dev/)
 
@@ -55,6 +55,20 @@ Exemple token with secret `1234` :
 ```sh
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmYWtlVXNlcklkIiwiZW1haWwiOiJmYWtlRW1haWwiLCJpYXQiOjE3NDAyMjUwODh9.PcHnkcIxknYZbaR7G4R0KaYAWAKeaHJ5cZYIUIPSYRA
 ```
+
+Encode a JWT token: [JWT Encoder/Decoder](https://10015.io/tools/jwt-encoder-decoder)
+
+## Generate openapi spec
+
+Edit `openapitools.json` config to specify the code generation (typescript-angular, typescript-node, etc)
+
+Then run this command to generate the code
+
+```sh
+bun run genapi
+```
+
+You should have the generated code in `dist/api`
 
 ## Testing
 
@@ -111,7 +125,5 @@ For more commands:
 ```sh
 bun run
 ```
-
-Encode a JWT token: [JWT Encoder/Decoder](https://10015.io/tools/jwt-encoder-decoder)
 
 Happy coding! 🎉
