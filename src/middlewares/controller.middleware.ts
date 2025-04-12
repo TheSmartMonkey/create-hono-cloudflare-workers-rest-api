@@ -1,10 +1,26 @@
+import { logger } from '@/common/logger';
 import { HttpError, HttpResponse } from '@/models/global/http.model';
 import { User } from '@/models/user.model';
 import { Context, TypedResponse } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 
+/**
+ * @description Controller config
+ * @property disableLogResponse - Disable logging the response
+ */
+type ControllerConfig = {
+  disableLogResponse?: boolean;
+};
+
+/**
+ * @description Controller
+ * @param callback - Callback function
+ * @param config - Controller config
+ * @returns Controller
+ */
 export function controller<T>(
   callback: ({ body, params, queryParams, user }: { body: any; params: any; queryParams: any; user: User }) => Promise<T>,
+  config?: ControllerConfig,
 ): (c: Context) => Promise<Response & TypedResponse> {
   return async (c: Context): Promise<Response & TypedResponse> => {
     try {
@@ -14,10 +30,14 @@ export function controller<T>(
       const user = c.get('user');
 
       const data: T = await callback({ body, params, queryParams, user });
+      // TODO: Customize return type for file upload for example (useCustomResponse = true)
       const response: HttpResponse<T> = {
         message: camelToUppercaseSnakeCase(callback.name),
         data,
       };
+      if (!config?.disableLogResponse) {
+        logger.info(response);
+      }
       return c.json(response);
     } catch (error) {
       if (error instanceof HttpError) {

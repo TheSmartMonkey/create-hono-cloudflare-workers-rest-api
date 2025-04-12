@@ -56,6 +56,8 @@ Exemple token with secret `1234` :
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmYWtlVXNlcklkIiwiZW1haWwiOiJmYWtlRW1haWwiLCJpYXQiOjE3NDAyMjUwODh9.PcHnkcIxknYZbaR7G4R0KaYAWAKeaHJ5cZYIUIPSYRA
 ```
 
+Encode a JWT token: [JWT Encoder/Decoder](https://10015.io/tools/jwt-encoder-decoder)
+
 ## Generate openapi spec
 
 ```sh
@@ -117,7 +119,5 @@ For more commands:
 ```sh
 bun run
 ```
-
-Encode a JWT token: [JWT Encoder/Decoder](https://10015.io/tools/jwt-encoder-decoder)
 
 Happy coding! 🎉

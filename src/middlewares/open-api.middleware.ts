@@ -1,4 +1,5 @@
 import { DtoSchema } from '@/models/global/dto.model';
+import { z } from 'zod';
 
 type RouteConfig = {
   method: 'get' | 'post' | 'delete' | 'put';
@@ -13,13 +14,7 @@ type RouteConfig = {
       description: 'OK_SUCCESS';
       content: {
         'application/json': {
-          schema: {
-            type: 'object';
-            properties: {
-              message: { type: 'string' };
-              data: { type: 'object' };
-            };
-          };
+          schema: z.ZodType;
         };
       };
     };
@@ -27,27 +22,30 @@ type RouteConfig = {
       description: 'CREATE_SUCCESS';
       content: {
         'application/json': {
-          schema: {
-            type: 'object';
-            properties: {
-              message: { type: 'string' };
-              data: { type: 'object' };
-            };
-          };
+          schema: z.ZodType;
         };
       };
     };
   };
 };
 
+type RouteValidation = {
+  input?: DtoSchema;
+  output?: z.ZodType;
+};
+
 export const route = {
-  get: (path: string, dto?: DtoSchema): any => createRoute('get', path, dto),
-  post: (path: string, dto?: DtoSchema): any => createRoute('post', path, dto),
-  delete: (path: string, dto?: DtoSchema): any => createRoute('delete', path, dto),
-  put: (path: string, dto?: DtoSchema): any => createRoute('put', path, dto),
+  get: (path: string, { input, output }: RouteValidation = {}): any => createRoute('get', path, { input, output }),
+  post: (path: string, { input, output }: RouteValidation = {}): any => createRoute('post', path, { input, output }),
+  delete: (path: string, { input, output }: RouteValidation = {}): any => createRoute('delete', path, { input, output }),
+  put: (path: string, { input, output }: RouteValidation = {}): any => createRoute('put', path, { input, output }),
 } as const;
 
-function createRoute(method: RouteConfig['method'], path: string, dto?: DtoSchema): RouteConfig {
+function createRoute(method: RouteConfig['method'], path: string, { input, output }: RouteValidation): RouteConfig {
+  const defaultOutputSchema = z.object({
+    message: z.string(),
+    data: z.object({}).passthrough(),
+  });
   const routeConfig: RouteConfig = {
     method,
     path,
@@ -56,35 +54,23 @@ function createRoute(method: RouteConfig['method'], path: string, dto?: DtoSchem
         description: 'OK_SUCCESS',
         content: {
           'application/json': {
-            schema: {
-              type: 'object',
-              properties: {
-                message: { type: 'string' },
-                data: { type: 'object' }
-              }
-            }
-          }
-        }
+            schema: output || defaultOutputSchema,
+          },
+        },
       },
       201: {
         description: 'CREATE_SUCCESS',
         content: {
           'application/json': {
-            schema: {
-              type: 'object', 
-              properties: {
-                message: { type: 'string' },
-                data: { type: 'object' }
-              }
-            }
-          }
-        }
-      }
-    }
+            schema: output || defaultOutputSchema,
+          },
+        },
+      },
+    },
   };
 
-  if (dto) {
-    routeConfig.request = createDto(dto);
+  if (input) {
+    routeConfig.request = createDto(input);
   }
 
   return routeConfig;

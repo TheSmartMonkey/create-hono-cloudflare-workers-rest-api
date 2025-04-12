@@ -6,7 +6,7 @@ import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } fro
 import { sign } from 'hono/jwt';
 import { CreateTodoDto } from './dtos/create-todo.dto';
 import { DeleteTodoDto } from './dtos/delete-todo.dto';
-import { GetTodoByIdDto } from './dtos/get-todo-by-id.dto';
+import { GetTodoByIdDto, GetTodoByIdOutput } from './dtos/get-todo-by-id.dto';
 import { UpdateTodoDto } from './dtos/update-todo.dto';
 
 export async function createTodoController({ body }: CreateTodoDto): Promise<CreateTodoDto['body']> {
@@ -31,9 +31,13 @@ export async function getAllUserTodosController({ user }: { user: User }): Promi
   return getAllUserTodos(user.userId);
 }
 
-export async function getTodoByIdController({ params, user }: GetTodoByIdDto): Promise<string> {
+export async function getTodoByIdController({ params, user }: GetTodoByIdDto): Promise<GetTodoByIdOutput> {
   logger.info({ user });
-  return getTodoById(params.todoId);
+  const todo = await getTodoById(params.todoId);
+  return {
+    todoId: todo,
+    title: 'fakeTitle',
+  };
 }
 
 export async function deleteTodoController({ params }: DeleteTodoDto): Promise<string> {
