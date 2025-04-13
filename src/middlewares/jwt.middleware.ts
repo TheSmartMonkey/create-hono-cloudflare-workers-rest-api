@@ -1,5 +1,5 @@
 import { logger } from '@/common/logger';
-import { HttpError } from '@/models/global/http.model';
+import { HttpError, UnauthorizedError } from '@/models/global/http.model';
 import { Context, Next } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { verify } from 'hono/jwt';
@@ -8,10 +8,10 @@ export async function jwtMiddleware(c: Context, next: Next): Promise<any> {
   try {
     if (c?.req?.url.includes('public')) return next();
     const authHeader = c.req.header('authorization');
-    if (!authHeader) throw new HttpError(401, 'TOKEN_IS_UNDEFINED');
+    if (!authHeader) throw new UnauthorizedError('TOKEN_IS_UNDEFINED');
 
     const token = authHeader.split(' ')[1];
-    if (!token) throw new HttpError(401, 'TOKEN_IS_UNDEFINED');
+    if (!token) throw new UnauthorizedError('TOKEN_IS_UNDEFINED');
 
     const jwtSecret = c.env.JWT_SECRET;
     const user = await verify(token, jwtSecret);

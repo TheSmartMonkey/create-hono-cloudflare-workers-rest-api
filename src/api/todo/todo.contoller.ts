@@ -1,6 +1,6 @@
 import { getEnv } from '@/common/env';
 import { logger } from '@/common/logger';
-import { HttpError } from '@/models/global/http.model';
+import { BadRequestError } from '@/models/global/http.model';
 import { User } from '@/models/user.model';
 import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from '@/services/todo.service';
 import { sign } from 'hono/jwt';
@@ -10,11 +10,9 @@ import { GetTodoByIdInput, GetTodoByIdOutput } from './schemas/get-todo-by-id.sc
 import { UpdateTodoInput, UpdateTodoOutput } from './schemas/update-todo.schema';
 
 export async function createTodoController({ body }: CreateTodoInput): Promise<CreateTodoOutput> {
-  // Just to test error middleware
   logger.info({ body });
   if (Object.keys(body).length === 0) {
-    // throw new Error('BODY_NOT_PROVIDED_ERROR');
-    throw new HttpError(400, 'BODY_NOT_PROVIDED_ERROR');
+    throw new BadRequestError('BODY_NOT_PROVIDED');
   }
   return body;
 }
