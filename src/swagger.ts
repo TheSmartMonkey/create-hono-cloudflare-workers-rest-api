@@ -36,7 +36,8 @@ async function fetchAndGenerate(): Promise<void> {
     execSync('npx @openapitools/openapi-generator-cli generate --generator-key v3.0');
     logger.info('✅ Angular services generated successfully in ./dist');
   } catch (error) {
-    logger.error('❌ Error fetching or generating:', error);
+    logger.error('❌ Error fetching or generating:');
+    logger.error(error as Error);
   }
 }
 
