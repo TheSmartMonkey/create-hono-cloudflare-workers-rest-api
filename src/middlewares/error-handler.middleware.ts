@@ -3,7 +3,7 @@ import { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 
 export function errorHandler(error: Error, c: Context): Response {
-  logger.error(error as unknown as string);
+  logger.error(error as Error);
 
   if (error instanceof HTTPException) {
     return c.json(

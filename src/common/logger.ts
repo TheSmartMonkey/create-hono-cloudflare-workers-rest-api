@@ -13,8 +13,8 @@ function info(message: string | object): void {
   getInstance().info(message);
 }
 
-function error(message: string, ...args: any[]): void {
-  getInstance().error({ args }, message);
+function error(message: string | object | Error): void {
+  getInstance().error(message);
 }
 
 export const logger = {
