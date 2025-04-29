@@ -12,6 +12,7 @@ import { HTTPException } from 'hono/http-exception';
 type ControllerConfig = {
   disableLogInput?: boolean;
   disableLogOutput?: boolean;
+  useCustomOutput?: boolean;
 };
 
 /**
@@ -37,6 +38,9 @@ export function controller<T>(
       const output: T = await callback({ body, params, queryParams, user });
       if (!config?.disableLogOutput) {
         logger.info({ output });
+      }
+      if (config?.useCustomOutput) {
+        return c.json(output as any);
       }
       return c.json({ data: output });
     } catch (error) {
