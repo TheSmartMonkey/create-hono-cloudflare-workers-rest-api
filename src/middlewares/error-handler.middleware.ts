@@ -8,8 +8,8 @@ export function errorHandler(error: Error, c: Context): Response {
   if (error instanceof HTTPException) {
     return c.json(
       {
-        message: error.message,
         status: error.status,
+        message: error.message,
       },
       error.status,
     );

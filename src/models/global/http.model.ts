@@ -1,8 +1,3 @@
-export type HttpOutput<TDATA> = {
-  message: Uppercase<string>;
-  data: TDATA;
-};
-
 type HttpErrorStatusCode = 400 | 401 | 403 | 404 | 409 | 500;
 
 export class HttpError extends Error {
