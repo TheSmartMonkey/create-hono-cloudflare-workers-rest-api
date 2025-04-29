@@ -8,6 +8,7 @@ import { HTTPException } from 'hono/http-exception';
  * @description Controller config
  * @property disableLogInput - Disable logging the input
  * @property disableLogOutput - Disable logging the output
+ * @property useCustomOutput - Use custom output
  */
 type ControllerConfig = {
   disableLogInput?: boolean;
@@ -40,7 +41,7 @@ export function controller<T>(
         logger.info({ output });
       }
       if (config?.useCustomOutput) {
-        return c.json(output as any);
+        return c.json(output as Response);
       }
       return c.json({ data: output });
     } catch (error) {
