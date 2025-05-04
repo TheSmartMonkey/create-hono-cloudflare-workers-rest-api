@@ -1,8 +1,10 @@
 import { logger } from '@/common/logger';
-import { HttpError } from '@/models/global/http.model';
+import { HttpError } from '@/models/global/error.model';
+import { SuccessOutput } from '@/models/global/success.model';
 import { User } from '@/models/user.model';
 import { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
+import { JSONValue } from 'hono/utils/types';
 
 /**
  * @description Controller config
@@ -22,7 +24,7 @@ type ControllerConfig = {
  * @param config - Controller config
  * @returns Controller
  */
-export function controller<T>(
+export function controller<T extends JSONValue>(
   callback: ({ body, params, queryParams, user }: { body: any; params: any; queryParams: any; user: User }) => Promise<T>,
   config?: ControllerConfig,
 ): (c: Context) => Promise<Response> {
@@ -41,9 +43,9 @@ export function controller<T>(
         logger.info({ output });
       }
       if (config?.useCustomOutput) {
-        return c.json(output as Response);
+        return c.json(output);
       }
-      return c.json({ data: output });
+      return c.json({ success: true, data: output } satisfies SuccessOutput<T>);
     } catch (error) {
       if (error instanceof HttpError) {
         throw new HTTPException(error?.status, { message: error?.message, cause: error });

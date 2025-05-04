@@ -1,7 +1,7 @@
 import { ENV_VARIABLES, setEnv } from '@/common/env';
 import { logger } from '@/common/logger';
 import { EnvVariables, envVariablesSchema } from '@/models/global/env.model';
-import { InternalServerError } from '@/models/global/http.model';
+import { InternalServerError } from '@/models/global/error.model';
 import { Context, Next } from 'hono';
 
 export async function envMiddleware(c: Context, next: Next): Promise<any> {

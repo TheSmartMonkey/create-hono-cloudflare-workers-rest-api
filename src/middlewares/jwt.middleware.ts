@@ -1,5 +1,5 @@
 import { logger } from '@/common/logger';
-import { HttpError, UnauthorizedError } from '@/models/global/http.model';
+import { HttpError, UnauthorizedError } from '@/models/global/error.model';
 import { Context, Next } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { verify } from 'hono/jwt';

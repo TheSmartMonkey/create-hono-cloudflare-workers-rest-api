@@ -1,5 +1,16 @@
+import { HttpErrorDescription, HttpErrorStatusCode } from '@/models/global/error.model';
 import { InputSchema } from '@/models/global/schema.model';
+import { HttpSuccessDescription, HttpSuccessStatusCode } from '@/models/global/success.model';
 import { z } from 'zod';
+
+type RouteResponse = {
+  description: HttpSuccessDescription | HttpErrorDescription;
+  content: {
+    'application/json': {
+      schema: z.ZodType;
+    };
+  };
+};
 
 type RouteConfig = {
   method: 'get' | 'post' | 'delete' | 'put';
@@ -10,14 +21,7 @@ type RouteConfig = {
     query?: InputSchema['queryParams'];
   };
   responses: {
-    200: {
-      description: 'OK_SUCCESS';
-      content: {
-        'application/json': {
-          schema: z.ZodType;
-        };
-      };
-    };
+    [key in HttpSuccessStatusCode | HttpErrorStatusCode]: RouteResponse;
   };
   tags?: string[];
 };
@@ -44,22 +48,17 @@ function createRoute(
   serviceName: Lowercase<string>,
   { input, output }: RouteValidation,
 ): RouteConfig {
-  const defaultOutputSchema = z.object({
-    message: z.string(),
-    data: z.object({}).passthrough(),
-  });
   const routeConfig: RouteConfig = {
     method,
     path,
     responses: {
-      200: {
-        description: 'OK_SUCCESS',
-        content: {
-          'application/json': {
-            schema: output || defaultOutputSchema,
-          },
-        },
-      },
+      200: createSucessOutput('OK_SUCCESS', output),
+      400: createErrorOutput('BAD_REQUEST_ERROR'),
+      401: createErrorOutput('UNAUTHORIZED_ERROR'),
+      403: createErrorOutput('FORBIDDEN_ERROR'),
+      404: createErrorOutput('NOT_FOUND_ERROR'),
+      409: createErrorOutput('CONFLICT_ERROR'),
+      500: createErrorOutput('INTERNAL_SERVER_ERROR'),
     },
   };
 
@@ -78,4 +77,29 @@ function createInputSchema(dto: InputSchema): RouteConfig['request'] {
     return { body, params: dto.params, query: dto.queryParams };
   }
   return { params: dto.params, query: dto.queryParams };
+}
+
+function createSucessOutput(description: HttpSuccessDescription, output?: z.ZodType): RouteResponse {
+  const defaultSuccessOutputSchema = z.object({
+    success: z.boolean(),
+    data: z.object({}).passthrough(),
+  });
+  return {
+    description,
+    content: { 'application/json': { schema: output ?? defaultSuccessOutputSchema } },
+  };
+}
+
+function createErrorOutput(description: HttpErrorDescription): RouteResponse {
+  const defaultErrorOutputSchema = z.object({
+    success: z.boolean(),
+    error: z.object({
+      issues: z.array(z.string()),
+      name: z.string(),
+    }),
+  });
+  return {
+    description,
+    content: { 'application/json': { schema: defaultErrorOutputSchema } },
+  };
 }

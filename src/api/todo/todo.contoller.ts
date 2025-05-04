@@ -1,6 +1,6 @@
 import { getEnv } from '@/common/env';
 import { logger } from '@/common/logger';
-import { BadRequestError } from '@/models/global/http.model';
+import { BadRequestError } from '@/models/global/error.model';
 import { User } from '@/models/user.model';
 import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from '@/services/todo.service';
 import { sign } from 'hono/jwt';
@@ -31,7 +31,7 @@ export async function getAllUserTodosController({ user }: { user: User }): Promi
 
 export async function getTodoByIdController({ params, user }: GetTodoByIdInput): Promise<GetTodoByIdOutput> {
   logger.info({ user });
-  return await getTodoById(params.todoId);
+  return getTodoById(params.todoId);
 }
 
 export async function deleteTodoController({ params }: DeleteTodoInput): Promise<DeleteTodoOutput> {

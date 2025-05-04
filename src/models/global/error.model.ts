@@ -1,4 +1,20 @@
-type HttpErrorStatusCode = 400 | 401 | 403 | 404 | 409 | 500;
+export type HttpErrorStatusCode = 400 | 401 | 403 | 404 | 409 | 500;
+export type HttpErrorDescription =
+  | 'BAD_REQUEST_ERROR'
+  | 'UNAUTHORIZED_ERROR'
+  | 'FORBIDDEN_ERROR'
+  | 'NOT_FOUND_ERROR'
+  | 'CONFLICT_ERROR'
+  | 'INTERNAL_SERVER_ERROR';
+
+export type ErrorOutput = {
+  success: false;
+  error: {
+    issues?: string[];
+    name: string;
+  };
+};
+
 
 export class HttpError extends Error {
   status: HttpErrorStatusCode;

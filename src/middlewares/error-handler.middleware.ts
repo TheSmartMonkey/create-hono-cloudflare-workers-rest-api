@@ -1,4 +1,5 @@
 import { logger } from '@/common/logger';
+import { ErrorOutput } from '@/models/global/error.model';
 import { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 
@@ -8,17 +9,22 @@ export function errorHandler(error: Error, c: Context): Response {
   if (error instanceof HTTPException) {
     return c.json(
       {
-        status: error.status,
-        message: error.message,
-      },
+        success: false,
+        error: {
+          name: error.message,
+        },
+      } satisfies ErrorOutput,
       error.status,
     );
   }
 
   return c.json(
     {
-      message: 'INTERNAL_SERVER_ERROR',
-    },
+      success: false,
+      error: {
+        name: 'INTERNAL_SERVER_ERROR',
+      },
+    } satisfies ErrorOutput,
     500,
   );
 }
