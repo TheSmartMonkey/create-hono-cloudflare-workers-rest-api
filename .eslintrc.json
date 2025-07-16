@@ -3,12 +3,7 @@
     "browser": false
   },
   "ignorePatterns": ["node_modules", "openapi/dist", "dist"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:you-dont-need-lodash-underscore/compatible",
-    "plugin:jest/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:jest/recommended"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 12,

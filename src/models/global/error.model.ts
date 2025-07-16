@@ -15,7 +15,6 @@ export type ErrorOutput = {
   };
 };
 
-
 export class HttpError extends Error {
   status: HttpErrorStatusCode;
 
