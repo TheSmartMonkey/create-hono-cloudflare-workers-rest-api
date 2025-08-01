@@ -81,7 +81,7 @@ function createInputSchema(dto: InputSchema): RouteConfig['request'] {
 
 function createSucessOutput(description: HttpSuccessDescription, output?: z.ZodType): RouteResponse {
   const defaultSuccessOutputSchema = z.object({
-    success: z.boolean(),
+    success: z.boolean().default(true),
     data: z.object({}).passthrough(),
   });
   return {
@@ -92,7 +92,7 @@ function createSucessOutput(description: HttpSuccessDescription, output?: z.ZodT
 
 function createErrorOutput(description: HttpErrorDescription): RouteResponse {
   const defaultErrorOutputSchema = z.object({
-    success: z.boolean(),
+    success: z.boolean().default(false),
     error: z.object({
       issues: z.array(z.string()),
       name: z.string(),
