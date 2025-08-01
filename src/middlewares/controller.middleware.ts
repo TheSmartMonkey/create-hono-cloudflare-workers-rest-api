@@ -1,7 +1,7 @@
 import { logger } from '@/common/logger';
 import { HttpError } from '@/models/global/error.model';
+import { Input, InputSchemaObject } from '@/models/global/schema.model';
 import { SuccessOutput } from '@/models/global/success.model';
-import { User } from '@/models/user.model';
 import { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { JSONValue } from 'hono/utils/types';
@@ -24,8 +24,8 @@ type ControllerConfig = {
  * @param config - Controller config
  * @returns Controller
  */
-export function controller<T extends JSONValue>(
-  callback: ({ body, params, queryParams, user }: { body: any; params: any; queryParams: any; user: User }) => Promise<T>,
+export function controller<TOUTPUT extends JSONValue>(
+  callback: <TINPUT extends InputSchemaObject>(input: Input<TINPUT>) => Promise<TOUTPUT>,
   config?: ControllerConfig,
 ): (c: Context) => Promise<Response> {
   return async (c: Context): Promise<Response> => {
@@ -38,14 +38,14 @@ export function controller<T extends JSONValue>(
         logger.info({ input: { body, params, queryParams } });
       }
 
-      const output: T = await callback({ body, params, queryParams, user });
+      const output: TOUTPUT = await callback({ body, params, queryParams, user });
       if (!config?.disableLogOutput) {
         logger.info({ output });
       }
       if (config?.useCustomOutput) {
         return c.json(output);
       }
-      return c.json({ success: true, data: output } satisfies SuccessOutput<T>);
+      return c.json({ success: true, data: output } satisfies SuccessOutput<TOUTPUT>);
     } catch (error) {
       if (error instanceof HttpError) {
         throw new HTTPException(error?.status, { message: error?.message, cause: error });
