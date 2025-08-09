@@ -30,17 +30,19 @@ export function controller<TOUTPUT extends JSONValue>(
 ): (c: Context) => Promise<Response> {
   return async (c: Context): Promise<Response> => {
     try {
+      const method = c.req.method;
+      const path = c.req.path;
       const body = await parseBody(c);
       const params = c.req.param();
       const queryParams = c.req.query();
       const user = c.get('user');
       if (!config?.disableLogInput) {
-        logger.info({ input: { body, params, queryParams } });
+        logger.info({ method, path, input: { body, params, queryParams } });
       }
 
       const output: TOUTPUT = await callback({ body, params, queryParams, user });
       if (!config?.disableLogOutput) {
-        logger.info({ output });
+        logger.info({ method, path, output });
       }
       if (config?.useCustomOutput) {
         return c.json(output);
