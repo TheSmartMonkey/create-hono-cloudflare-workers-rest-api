@@ -1,5 +1,5 @@
 import { logger } from '@/common/logger';
-import { ErrorOutput } from '@/models/global/error.model';
+import { ErrorOutput } from '@/models/common/error.model';
 import { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 

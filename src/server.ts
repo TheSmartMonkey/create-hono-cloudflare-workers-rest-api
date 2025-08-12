@@ -4,7 +4,7 @@ import { logger } from './common/logger';
 import { errorHandler } from './middlewares/error-handler.middleware';
 import { jwtMiddleware } from './middlewares/jwt.middleware';
 import { envMiddleware } from './middlewares/validate-env.middleware';
-import { EnvVariables } from './models/global/env.model';
+import { EnvVariables } from './models/common/env.model';
 import routes from './routes';
 
 const app = new OpenAPIHono<{ Bindings: EnvVariables }>();

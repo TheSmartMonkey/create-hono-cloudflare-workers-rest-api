@@ -1,7 +1,7 @@
 import { logger } from '@/common/logger';
-import { HttpError } from '@/models/global/error.model';
-import { Input, InputSchemaObject } from '@/models/global/schema.model';
-import { SuccessOutput } from '@/models/global/success.model';
+import { HttpError } from '@/models/common/error.model';
+import { Input, InputSchemaObject } from '@/models/common/schema.model';
+import { SuccessOutput } from '@/models/common/success.model';
 import { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { JSONValue } from 'hono/utils/types';

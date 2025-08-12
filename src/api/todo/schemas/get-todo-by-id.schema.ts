@@ -1,4 +1,4 @@
-import { Input, InputSchemaObject, Output } from '@/models/global/schema.model';
+import { Input, InputSchemaObject, Output } from '@/models/common/schema.model';
 import { z } from 'zod';
 
 export const getTodoByIdInput = {

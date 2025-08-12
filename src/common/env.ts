@@ -1,4 +1,4 @@
-import { EnvVariables } from '@/models/global/env.model';
+import { EnvVariables } from '@/models/common/env.model';
 
 export let ENV_VARIABLES: EnvVariables;
 

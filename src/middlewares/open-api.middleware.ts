@@ -1,6 +1,6 @@
-import { HttpErrorDescription, HttpErrorStatusCode } from '@/models/global/error.model';
-import { InputSchema } from '@/models/global/schema.model';
-import { HttpSuccessDescription, HttpSuccessStatusCode } from '@/models/global/success.model';
+import { HttpErrorDescription, HttpErrorStatusCode } from '@/models/common/error.model';
+import { InputSchema } from '@/models/common/schema.model';
+import { HttpSuccessDescription, HttpSuccessStatusCode } from '@/models/common/success.model';
 import { z } from 'zod';
 
 type RouteResponse = {

@@ -1,6 +1,6 @@
 import { getEnv } from '@/common/env';
 import { logger } from '@/common/logger';
-import { BadRequestError } from '@/models/global/error.model';
+import { BadRequestError } from '@/models/common/error.model';
 import { User } from '@/models/user.model';
 import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from '@/services/todo.service';
 import { sign } from 'hono/jwt';
