@@ -5,13 +5,12 @@
     "version": "7.12.0",
     "generators": {
       "v3.0": {
-        "generatorName": "typescript-angular",
+        "generatorName": "typescript-fetch",
         "output": "./dist/api",
         "inputSpec": "./swagger.json",
         "additionalProperties": {
-          "ngVersion": "17.0.0",
           "supportsES6": true,
-          "npmName": "@api/angular",
+          "npmName": "@api/fetch",
           "npmVersion": "1.0.0",
           "withInterfaces": true,
           "useSingleRequestParameter": true,

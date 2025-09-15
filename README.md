@@ -60,7 +60,7 @@ Encode a JWT token: [JWT Encoder/Decoder](https://10015.io/tools/jwt-encoder-dec
 
 ## Generate openapi spec
 
-Edit `openapitools.json` config to specify the code generation (typescript-angular, typescript-node, etc)
+Edit `openapitools.json` config to specify the code generation (typescript-angular, typescript-fetch, etc)
 
 Then run this command to generate the code
 

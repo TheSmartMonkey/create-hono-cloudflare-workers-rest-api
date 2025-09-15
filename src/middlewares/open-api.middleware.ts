@@ -81,12 +81,20 @@ function createInputSchema(dto: InputSchema): RouteConfig['request'] {
 
 function createSucessOutput(description: HttpSuccessDescription, output?: z.ZodType): RouteResponse {
   const defaultSuccessOutputSchema = z.object({
-    success: z.boolean().default(true),
+    success: z.boolean(),
     data: z.object({}).passthrough(),
   });
+
+  const schema = output
+    ? z.object({
+        success: z.boolean(),
+        data: output,
+      })
+    : defaultSuccessOutputSchema;
+
   return {
     description,
-    content: { 'application/json': { schema: output ?? defaultSuccessOutputSchema } },
+    content: { 'application/json': { schema } },
   };
 }
 
