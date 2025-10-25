@@ -15,6 +15,11 @@ export type ErrorOutput = {
   };
 };
 
+/**
+ * @description Http Error
+ * @param status - Http error status
+ * @param message - Error message
+ */
 export class HttpError extends Error {
   status: HttpErrorStatusCode;
 
@@ -24,6 +29,10 @@ export class HttpError extends Error {
   }
 }
 
+/**
+ * @description Bad Request Error (400)
+ * @param message - Error message
+ */
 export class BadRequestError extends HttpError {
   constructor(message: Uppercase<string>) {
     super(400, message);
@@ -31,6 +40,10 @@ export class BadRequestError extends HttpError {
   }
 }
 
+/**
+ * @description Unauthorized Error (401)
+ * @param message - Error message
+ */
 export class UnauthorizedError extends HttpError {
   constructor(message: Uppercase<string>) {
     super(401, message);
@@ -38,6 +51,10 @@ export class UnauthorizedError extends HttpError {
   }
 }
 
+/**
+ * @description Forbidden Error (403)
+ * @param message - Error message
+ */
 export class ForbiddenError extends HttpError {
   constructor(message: Uppercase<string>) {
     super(403, message);
@@ -45,6 +62,10 @@ export class ForbiddenError extends HttpError {
   }
 }
 
+/**
+ * @description Not Found Error (404)
+ * @param message - Error message
+ */
 export class NotFoundError extends HttpError {
   constructor(message: Uppercase<string>) {
     super(404, message);
@@ -52,6 +73,10 @@ export class NotFoundError extends HttpError {
   }
 }
 
+/**
+ * @description Conflict Error (409)
+ * @param message - Error message
+ */
 export class ConflictError extends HttpError {
   constructor(message: Uppercase<string>) {
     super(409, message);
@@ -59,6 +84,10 @@ export class ConflictError extends HttpError {
   }
 }
 
+/**
+ * @description Internal Server Error (500)
+ * @param message - Error message
+ */
 export class InternalServerError extends HttpError {
   constructor(message: Uppercase<string>) {
     super(500, message);
