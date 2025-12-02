@@ -5,5 +5,13 @@
   "trailingComma": "all",
   "singleQuote": true,
   "semi": true,
-  "bracketSpacing": true
+  "bracketSpacing": true,
+  "overrides": [
+    {
+      "files": "**/*.routes.ts",
+      "options": {
+        "printWidth": 999
+      }
+    }
+  ]
 }
