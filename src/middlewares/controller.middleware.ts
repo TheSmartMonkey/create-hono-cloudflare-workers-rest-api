@@ -1,6 +1,6 @@
 import { logger } from '@/common/logger';
 import { HttpError } from '@/models/common/error.model';
-import { Input, InputSchemaObject } from '@/models/common/schema.model';
+import { Input, InputDtoObject } from '@/models/common/schema.model';
 import { SuccessOutput } from '@/models/common/success.model';
 import { Context } from 'hono';
 import { HTTPException } from 'hono/http-exception';
@@ -25,7 +25,7 @@ type ControllerConfig = {
  * @returns Controller
  */
 export function controller<TOUTPUT extends JSONValue>(
-  callback: <TINPUT extends InputSchemaObject>(input: Input<TINPUT>) => Promise<TOUTPUT>,
+  callback: <TINPUT extends InputDtoObject>(input: Input<TINPUT>) => Promise<TOUTPUT>,
   config?: ControllerConfig,
 ): (c: Context) => Promise<Response> {
   return async (c: Context): Promise<Response> => {

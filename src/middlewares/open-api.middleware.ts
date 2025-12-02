@@ -1,5 +1,5 @@
 import { HttpErrorDescription, HttpErrorStatusCode } from '@/models/common/error.model';
-import { InputSchema } from '@/models/common/schema.model';
+import { InputDto } from '@/models/common/schema.model';
 import { HttpSuccessDescription, HttpSuccessStatusCode } from '@/models/common/success.model';
 import { z } from 'zod';
 
@@ -16,9 +16,9 @@ type RouteConfig = {
   method: 'get' | 'post' | 'delete' | 'put';
   path: string;
   request?: {
-    body?: { content: { 'application/json': { schema: InputSchema['body'] } } };
-    params?: InputSchema['params'];
-    query?: InputSchema['queryParams'];
+    body?: { content: { 'application/json': { schema: InputDto['body'] } } };
+    params?: InputDto['params'];
+    query?: InputDto['queryParams'];
   };
   responses: {
     [key in HttpSuccessStatusCode | HttpErrorStatusCode]: RouteResponse;
@@ -27,7 +27,7 @@ type RouteConfig = {
 };
 
 type RouteValidation = {
-  input?: InputSchema;
+  input?: InputDto;
   output?: z.ZodType;
 };
 
@@ -71,7 +71,7 @@ function createRoute(
   return routeConfig;
 }
 
-function createInputSchema(dto: InputSchema): RouteConfig['request'] {
+function createInputSchema(dto: InputDto): RouteConfig['request'] {
   if (dto.body) {
     const body = { content: { 'application/json': { schema: dto?.body } } };
     return { body, params: dto.params, query: dto.queryParams };

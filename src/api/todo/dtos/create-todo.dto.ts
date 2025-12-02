@@ -1,4 +1,4 @@
-import { Input, InputSchemaObject, Output } from '@/models/common/schema.model';
+import { Input, InputDtoObject, Output } from '@/models/common/schema.model';
 import { z } from 'zod';
 
 export const createTodoInput = {
@@ -7,7 +7,7 @@ export const createTodoInput = {
       name: z.string().openapi({ example: 'john' }),
     })
     .openapi('createTodoInputBody'),
-} satisfies InputSchemaObject;
+} satisfies InputDtoObject;
 export type CreateTodoInput = Input<typeof createTodoInput>;
 
 export const createTodoOutput = z.object({

@@ -1,10 +1,10 @@
 import { controller } from '@/middlewares/controller.middleware';
 import { route } from '@/middlewares/open-api.middleware';
 import { OpenAPIHono } from '@hono/zod-openapi';
-import { createTodoInput, createTodoOutput } from './schemas/create-todo.schema';
-import { deleteTodoInput, deleteTodoOutput } from './schemas/delete-todo.schema';
-import { getTodoByIdInput, getTodoByIdOutput } from './schemas/get-todo-by-id.schema';
-import { updateTodoInput, updateTodoOutput } from './schemas/update-todo.schema';
+import { createTodoInput, createTodoOutput } from './dtos/create-todo.dto';
+import { deleteTodoInput, deleteTodoOutput } from './dtos/delete-todo.dto';
+import { getTodoByIdInput, getTodoByIdOutput } from './dtos/get-todo-by-id.dto';
+import { updateTodoInput, updateTodoOutput } from './dtos/update-todo.dto';
 import { createTodoController, deleteTodoController, getAllUserTodosController, getTodoByIdController, updateTodoController } from './todo.contoller';
 
 const todo = new OpenAPIHono();

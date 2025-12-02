@@ -4,10 +4,10 @@ import { BadRequestError } from '@/models/common/error.model';
 import { User } from '@/models/user.model';
 import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from '@/services/todo.service';
 import { sign } from 'hono/jwt';
-import { CreateTodoInput, CreateTodoOutput } from './schemas/create-todo.schema';
-import { DeleteTodoInput, DeleteTodoOutput } from './schemas/delete-todo.schema';
-import { GetTodoByIdInput, GetTodoByIdOutput } from './schemas/get-todo-by-id.schema';
-import { UpdateTodoInput, UpdateTodoOutput } from './schemas/update-todo.schema';
+import { CreateTodoInput, CreateTodoOutput } from './dtos/create-todo.dto';
+import { DeleteTodoInput, DeleteTodoOutput } from './dtos/delete-todo.dto';
+import { GetTodoByIdInput, GetTodoByIdOutput } from './dtos/get-todo-by-id.dto';
+import { UpdateTodoInput, UpdateTodoOutput } from './dtos/update-todo.dto';
 
 export async function createTodoController(input: CreateTodoInput): Promise<CreateTodoOutput> {
   const { body } = input;

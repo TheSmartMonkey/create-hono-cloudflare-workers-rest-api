@@ -1,19 +1,19 @@
 import { User } from '@/models/user.model';
 import { z } from 'zod';
 
-export type InputSchemaObject = {
+export type InputDtoObject = {
   body?: z.ZodType;
   params?: z.ZodType;
   queryParams?: z.ZodType;
 };
 
-export type InputSchema = {
+export type InputDto = {
   body?: z.ZodSchema;
   params?: z.ZodSchema;
   queryParams?: z.ZodSchema;
 };
 
-export type Input<T extends InputSchemaObject> = {
+export type Input<T extends InputDtoObject> = {
   body: z.infer<NonNullable<T['body']>>;
   params: z.infer<NonNullable<T['params']>>;
   queryParams: z.infer<NonNullable<T['queryParams']>>;

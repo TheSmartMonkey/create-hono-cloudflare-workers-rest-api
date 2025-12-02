@@ -1,11 +1,11 @@
-import { Input, InputSchemaObject, Output } from '@/models/common/schema.model';
+import { Input, InputDtoObject, Output } from '@/models/common/schema.model';
 import { z } from 'zod';
 
 export const deleteTodoInput = {
   params: z.object({
     todoId: z.string().openapi({ example: '1234' }),
   }),
-} satisfies InputSchemaObject;
+} satisfies InputDtoObject;
 export type DeleteTodoInput = Input<typeof deleteTodoInput>;
 
 export const deleteTodoOutput = z.object({
