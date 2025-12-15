@@ -20,5 +20,5 @@
   },
 
   "include": ["src"],
-  "exclude": ["node_modules/**/*", ".wrangler/**/*", "dist/**/*"],
+  "exclude": ["node_modules/**/*", ".wrangler/**/*", "dist/**/*"]
 }

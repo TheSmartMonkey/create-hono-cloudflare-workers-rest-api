@@ -15,17 +15,20 @@ Thank you for your interest in contributing! This document provides guidelines a
 1. **Fork the repository** on GitHub
 
 2. **Clone your fork** locally:
+
    ```sh
    git clone https://github.com/YOUR_USERNAME/create-hono-cloudflare-workers-rest-api.git
    cd create-hono-cloudflare-workers-rest-api
    ```
 
 3. **Add the upstream repository** as a remote:
+
    ```sh
    git remote add upstream https://github.com/TheSmartMonkey/create-hono-cloudflare-workers-rest-api.git
    ```
 
 4. **Install dependencies**:
+
    ```sh
    bun i
    ```
@@ -115,6 +118,7 @@ bun remove <package-name>
 After updating dependencies:
 
 1. **Test your changes** to ensure everything still works:
+
    ```sh
    bun run test
    ```
@@ -138,6 +142,7 @@ If you modify the OpenAPI specification:
 1. **Edit `openapitools.json`** to specify the code generation (typescript-angular, typescript-fetch, etc)
 
 2. **Generate the API code**:
+
    ```sh
    bun run genapi
    ```
@@ -156,6 +161,7 @@ Write clear and descriptive commit messages:
 - Reference issues and pull requests liberally after the first line
 
 Example:
+
 ```
 feat: add user authentication middleware
 
@@ -169,12 +175,14 @@ Closes #123
 ### Pull Request Process
 
 1. **Keep your branch up to date**:
+
    ```sh
    git fetch upstream
    git rebase upstream/main
    ```
 
 2. **Push your changes** to your fork:
+
    ```sh
    git push origin feature/your-feature-name
    ```
@@ -205,8 +213,8 @@ Closes #123
 ## Questions?
 
 If you have questions or need help, feel free to:
+
 - Open an issue on GitHub
 - Check the existing issues and discussions
 
 Thank you for contributing! 🎉
-
