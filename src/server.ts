@@ -20,7 +20,7 @@ app.openAPIRegistry.registerComponent('securitySchemes', 'AuthorizationBearer', 
   scheme: 'bearer',
   bearerFormat: 'JWT',
 });
-// TODO: Only for local development
+
 app.get(
   '/public/api',
   swaggerUI({
@@ -35,7 +35,6 @@ app.doc('/public/api-json', {
     version: 'v1',
   },
   openapi: '3.1.0',
-  // TODO: Pass default JWT to openapi
   security: [
     {
       AuthorizationBearer: [],
