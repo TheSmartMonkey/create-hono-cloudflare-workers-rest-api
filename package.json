@@ -1,13 +1,13 @@
 {
   "type": "module",
   "scripts": {
+    "start": "wrangler dev --env local --live-reload src/server.ts",
     "fix": "bun run lint && bun run format",
     "lint": "eslint src/**/*.ts --fix",
     "lint:check": "eslint src/**/*.ts",
     "type:check": "tsc",
     "format": "npx prettier --write .",
     "format:check": "npx prettier --check .",
-    "start": "wrangler dev --env local --live-reload src/server.ts",
     "deploy": "wrangler deploy --env dev --minify src/server.ts",
     "undeploy": "wrangler delete --env dev src/server.ts",
     "test": "bun run unit && bun run integration",
