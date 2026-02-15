@@ -11,8 +11,8 @@
     "deploy": "wrangler deploy --env dev --minify src/server.ts",
     "undeploy": "wrangler delete --env dev src/server.ts",
     "test": "bun run unit && bun run integration",
-    "unit": "cross-env-shell NO_LOGS=true jest --group=unit",
-    "integration": "cross-env-shell NO_LOGS=true jest --group=integration --maxWorkers=1",
+    "unit": "NO_LOGS=true jest --group=unit",
+    "integration": "NO_LOGS=true jest --group=integration --maxWorkers=1",
     "genapi": "bun run src/swagger.ts"
   },
   "dependencies": {
@@ -32,7 +32,6 @@
     "@typescript-eslint/eslint-plugin": "^8.49.0",
     "@typescript-eslint/parser": "^8.49.0",
     "bun-types": "^1.3.4",
-    "cross-env": "^7.0.3",
     "eslint": "^8.57.1",
     "eslint-plugin-jest": "^28.14.0",
     "eslint-plugin-node": "^11.1.0",
