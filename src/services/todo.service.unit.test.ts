@@ -1,6 +1,3 @@
-/**
- * @group unit
- */
 import { deleteTodo, getAllTodos, getAllUserTodos, getTodoById, updateTodo } from './todo.service';
 
 describe('Todo Service', () => {

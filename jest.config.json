@@ -10,7 +10,6 @@
   },
   "reporters": ["default"],
   "roots": ["<rootDir>"],
-  "runner": "groups",
   "testEnvironment": "node",
   "transform": {
     "^.+\\.tsx?$": [
