@@ -4,6 +4,7 @@
     "module": "ESNext",
     "declaration": true,
     "strict": true,
+    "isolatedModules": true,
     "lib": ["es2020"],
     "moduleResolution": "node",
     "esModuleInterop": true,
